@@ -1,0 +1,75 @@
+---
+title: "A Comparison of Supervised Machine Learning Classification Methods to Identify Risk Factors for Suicide Morbidity Among USA High School Students" 
+author: "Catalina Cañizares. MSc; Mark J. Macgowan. Ph.D.; Gabriel Odom. Ph.D., Th.D."
+bibliography: references.bib
+format: 
+  revealjs:
+    scrollable: true
+    slide-number: true
+    width: 1600
+    height: 900
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/29/FIU_PHSW.png"
+    footer: "Dissertation Proposal"
+    theme: serif
+    code-fold: true
+    echo: true
+    chalkboard: true
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+# library(tidyverse)
+# library(tidyYRBS)
+# data("hs_district")
+# 
+# table(hs_district$age)
+```
+
+
+## Agenda
+
+::: {.incremental}
+- Background: Suicide Morbidity
+- Significance of the study
+- Research aims 
+- Theoretical Framework
+  - Suicide Morbidity 
+  - Machine Learning
+- Methods
+- Ethical Implications
+:::
+
+## Definitions
+::: {.fragment}
+### Adolescents (10-19 years of age)
+- Is the phase of life between childhood and adulthood [@cdc]
+- Adolescents experience rapid physical, cognitive and psychosocial growth [@cdc]
+:::
+::: {.fragment}
+### Suicide Ideation
+Any self-reported thoughts of engaging in suicide-related behaviors [@ocarroll1996]  
+
+- Considering
+- Planning suicide
+:::
+
+::: {.fragment}
+### Suicide Attempts
+Any act that is self-inflicted and potentially injurious, for which there is evidence of **intent to die** [@silverman2007]
+:::
+
+## Background 
+
+## Signifance of the study 
+
+
+## Research aims
+
+## Theory - Suicide Morbidity 
+
+
+## Machine Learning 
+
+## Methods 
+
+## Ethical Implications 
