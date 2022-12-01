@@ -60,6 +60,7 @@ Any act that is self-inflicted and potentially injurious, for which there is evi
 
 ## Background 
 
+
 ## Signifance of the study 
 
 
@@ -72,4 +73,24 @@ Any act that is self-inflicted and potentially injurious, for which there is evi
 
 ## Methods 
 
+::: {.panel-tabset}
+### Logistic Regression 
+- Model the outcome as a linear function of the predictors [@burkov2019]. 
+- Binary outcome --> Precludes the function from spanning from minus infinity to plus infinity, given that there are only two possible values [@burkov2019]. Therefore, the sigmoid function is applied to adjust the predictions to stay between 0 and 1 [@burkov2019]
+
+$$f(x) = \frac{1}{1+ e^{-x}}$$    
+![](images/logistic.png)
+### Lasso regression
+
+### K-Nearest Neighbors (KNN)
+
+![](images/knn.png)
+
+### Random Forest 
+
+### Classification Trees 
+
+### Extreme Gradient Boosting (XGBoost)
+
+:::
 ## Ethical Implications 
