@@ -78,9 +78,12 @@ Any act that is self-inflicted and potentially injurious, for which there is evi
 *"quote de Durkheim"*
 
 
-![](images/durkheim.jpg)
-![](images/interpersonal.png)  
-![](images/Klonsky.png)  
+![](images/durkheim.png){.absolute top=200 left=0 width="300" height="300"}  
+
+![](images/interpersonal.png) {.absolute top=200 left=0 width="350" height="300"}  
+
+
+![](images/Klonsky.png){.absolute top=200 left=0 width="350" height="300"} 
 
 ## Theory - Suicide Morbidity 
 

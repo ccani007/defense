@@ -7,7 +7,7 @@
 <link href="defense_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="defense_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="defense_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.37">
+  <meta name="generator" content="quarto-1.1.189">
 
   <meta name="author" content="Catalina Cañizares. MSc; Mark J. Macgowan. Ph.D.; Gabriel Odom. Ph.D., Th.D.">
   <title>A Comparison of Supervised Machine Learning Classification Methods to Identify Risk Factors for Suicide Morbidity Among USA High School Students</title>
@@ -19,10 +19,15 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -445,14 +450,14 @@
 <!-- -->
 <h3 id="adolescents-10-19-years-of-age">Adolescents (10-19 years of age)</h3>
 <ul>
-<li>Is the phase of life between childhood and adulthood <span class="citation" data-cites="cdc">(<a href="#/ref-cdc" role="doc-biblioref" onclick="return false;">CDC, n.d.</a>)</span></li>
-<li>Adolescents experience rapid physical, cognitive and psychosocial growth <span class="citation" data-cites="cdc">(<a href="#/ref-cdc" role="doc-biblioref" onclick="return false;">CDC, n.d.</a>)</span></li>
+<li>Is the phase of life between childhood and adulthood <span class="citation" data-cites="cdc">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">CDC, n.d.</a>)</span></li>
+<li>Adolescents experience rapid physical, cognitive and psychosocial growth <span class="citation" data-cites="cdc">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">CDC, n.d.</a>)</span></li>
 </ul>
 </div>
 <div class="fragment">
 <!-- -->
 <h3 id="suicide-ideation">Suicide Ideation</h3>
-<p>Any self-reported thoughts of engaging in suicide-related behaviors <span class="citation" data-cites="ocarroll1996">(<a href="#/ref-ocarroll1996" role="doc-biblioref" onclick="return false;">O’Carroll et al. 1996</a>)</span></p>
+<p>Any self-reported thoughts of engaging in suicide-related behaviors <span class="citation" data-cites="ocarroll1996">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">O’Carroll et al. 1996</a>)</span></p>
 <ul>
 <li>Considering</li>
 <li>Planning suicide</li>
@@ -461,7 +466,7 @@
 <div class="fragment">
 <!-- -->
 <h3 id="suicide-attempts">Suicide Attempts</h3>
-<p>Any act that is self-inflicted and potentially injurious, for which there is evidence of <strong>intent to die</strong> <span class="citation" data-cites="silverman2007">(<a href="#/ref-silverman2007" role="doc-biblioref" onclick="return false;">Silverman et al. 2007</a>)</span></p>
+<p>Any act that is self-inflicted and potentially injurious, for which there is evidence of <strong>intent to die</strong> <span class="citation" data-cites="silverman2007">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Silverman et al. 2007</a>)</span></p>
 </div>
 </section>
 <section id="background" class="slide level2">
@@ -472,9 +477,25 @@
 </section>
 <section id="research-aims" class="slide level2">
 <h2>Research aims</h2>
+<ol type="1">
+<li><p>Identify the critical risk factors for adolescent suicide morbidity from a set of 99 risk behavior predictors with machine learning classification algorithms.</p></li>
+<li><p>Identify the <strong>best</strong> machine learning methodology to classify adolescents who attempted and considered suicide according to its classification performance (ROC, overall accuracy, and the Kappa value).</p></li>
+<li><p>Compare the performance of an a priori-determined model to models informed by feature selection from the least absolute shrinkage and selection operator method.</p></li>
+<li><p>Identify if there are differences in the critical risk factors for suicide ideation and suicide attempts.</p></li>
+</ol>
 </section>
 <section id="theory---suicide-morbidity" class="slide level2">
 <h2>Theory - Suicide Morbidity</h2>
+<p><em>“quote de Durkheim”</em></p>
+<p><img data-src="images/durkheim.png" class="absolute" style="top: 200px; left: 0px; width: 300px; height: 300px; "></p>
+<p><img data-src="images/interpersonal.png"> {.absolute top=200 left=0 width=“350” height=“300”}</p>
+<p><img data-src="images/Klonsky.png" class="absolute" style="top: 200px; left: 0px; width: 350px; height: 300px; "></p>
+</section>
+<section id="theory---suicide-morbidity-1" class="slide level2">
+<h2>Theory - Suicide Morbidity</h2>
+<ul>
+<li><img data-src="images/Okado.jpeg"></li>
+</ul>
 </section>
 <section id="machine-learning" class="slide level2">
 <h2>Machine Learning</h2>
@@ -486,17 +507,17 @@
 <div class="tab-content">
 <div id="tabset-1-1">
 <ul>
-<li><p>Model the outcome as a linear function of the predictors <span class="citation" data-cites="burkov2019">(<a href="#/ref-burkov2019" role="doc-biblioref" onclick="return false;">Burkov 2019</a>)</span>.</p></li>
-<li><p>The sigmoid function is applied to adjust the predictions to stay between 0 and 1 <span class="citation" data-cites="burkov2019">(<a href="#/ref-burkov2019" role="doc-biblioref" onclick="return false;">Burkov 2019</a>)</span></p></li>
+<li><p>Model the outcome as a linear function of the predictors <span class="citation" data-cites="burkov2019">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Burkov 2019</a>)</span>.</p></li>
+<li><p>The sigmoid function is applied to adjust the predictions to stay between 0 and 1 <span class="citation" data-cites="burkov2019">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Burkov 2019</a>)</span></p></li>
 <li><p>The predictors are selected from past literature modeling YRBSS data</p></li>
 </ul>
 <p><img data-src="images/logistic.png"></p>
 </div>
 <div id="tabset-1-2">
 <ul>
-<li><p>Estimates the coefficients aiming at zero, this means that it uses shrinkage <span class="citation" data-cites="James2013">(<a href="#/ref-James2013" role="doc-biblioref" onclick="return false;">James et al. 2013</a>)</span>.</p></li>
-<li><p>It is extremely useful for variable importance, selection, and regularization <span class="citation" data-cites="James2013">(<a href="#/ref-James2013" role="doc-biblioref" onclick="return false;">James et al. 2013</a>)</span>.</p></li>
-<li><p>This technique will select only relevant coefficients <span class="citation" data-cites="James2013">(<a href="#/ref-James2013" role="doc-biblioref" onclick="return false;">James et al. 2013</a>)</span>.</p></li>
+<li><p>Estimates the coefficients aiming at zero, this means that it uses shrinkage <span class="citation" data-cites="James2013">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">James et al. 2013</a>)</span>.</p></li>
+<li><p>It is extremely useful for variable importance, selection, and regularization <span class="citation" data-cites="James2013">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">James et al. 2013</a>)</span>.</p></li>
+<li><p>This technique will select only relevant coefficients <span class="citation" data-cites="James2013">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">James et al. 2013</a>)</span>.</p></li>
 </ul>
 </div>
 <div id="tabset-1-3">
@@ -505,23 +526,23 @@
 </ul>
 <p><img data-src="images/knn.png"></p>
 <ul>
-<li>The three closest points to the test observation are identified, and it is predicted that the observation belongs to the most common class, in this case, blue circles <span class="citation" data-cites="James2013">(<a href="#/ref-James2013" role="doc-biblioref" onclick="return false;">James et al. 2013</a>)</span></li>
+<li>The three closest points to the test observation are identified, and it is predicted that the observation belongs to the most common class, in this case, blue circles <span class="citation" data-cites="James2013">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">James et al. 2013</a>)</span></li>
 </ul>
 </div>
 <div id="tabset-1-4">
 <ul>
-<li>Divides the feature space into non-overlapping rectangular regions with similar response rates that can later be used for prediction <span class="citation" data-cites="Greenwell2022">(<a href="#/ref-Greenwell2022" role="doc-biblioref" onclick="return false;">Greenwell 2022</a>)</span>.</li>
+<li>Divides the feature space into non-overlapping rectangular regions with similar response rates that can later be used for prediction <span class="citation" data-cites="Greenwell2022">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Greenwell 2022</a>)</span>.</li>
 </ul>
 </div>
 <div id="tabset-1-5">
 <ul>
-<li>Random forest consists of hundreds or thousands of independently grown decision trees generated from different bootstrap samples from the training data <span class="citation" data-cites="Greenwell2022">(<a href="#/ref-Greenwell2022" role="doc-biblioref" onclick="return false;">Greenwell 2022</a>)</span>.</li>
+<li>Random forest consists of hundreds or thousands of independently grown decision trees generated from different bootstrap samples from the training data <span class="citation" data-cites="Greenwell2022">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Greenwell 2022</a>)</span>.</li>
 </ul>
 </div>
 <div id="tabset-1-6">
 <ul>
 <li><p>Same concept of Random Forest but..</p></li>
-<li><p>Each additional tree added to the model partially fixes the errors made by the previous trees until the maximum number of trees are combined <span class="citation" data-cites="burkov2019">(<a href="#/ref-burkov2019" role="doc-biblioref" onclick="return false;">Burkov 2019</a>)</span></p></li>
+<li><p>Each additional tree added to the model partially fixes the errors made by the previous trees until the maximum number of trees are combined <span class="citation" data-cites="burkov2019">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Burkov 2019</a>)</span></p></li>
 </ul>
 </div>
 </div>
@@ -529,6 +550,12 @@
 </section>
 <section id="ethical-implications" class="slide level2 smaller scrollable">
 <h2>Ethical Implications</h2>
+<p>Minimal human subjects concerns</p>
+<ol type="1">
+<li>The original data was not collected to answer the present research question</li>
+<li>Acknowledge the ownership of the original data.</li>
+<li>Accidentally losing or destroying the data.</li>
+</ol>
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/FIU_PHSW.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p>Dissertation Proposal</p>
@@ -877,7 +904,8 @@ Silverman, Morton M., Alan L. Berman, Nels D. Sanddal, W. O’Carroll Patrick, a
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          let href = ref.getAttribute('href');
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
