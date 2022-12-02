@@ -65,32 +65,75 @@ Any act that is self-inflicted and potentially injurious, for which there is evi
 
 
 ## Research aims
+1. Identify the critical risk factors for adolescent suicide morbidity from a set of 99 risk behavior predictors with machine learning classification algorithms.   
+
+2. Identify the **best** machine learning methodology to classify adolescents who attempted and considered suicide according to its classification performance (ROC, overall accuracy, and the Kappa value). 
+
+3. Compare the performance of an a priori-determined model to models informed by feature selection from the least absolute shrinkage and selection operator method.   
+
+4. Identify if there are differences in the critical risk factors for suicide ideation and suicide attempts.   
+
+
+## Theory - Suicide Morbidity 
+*"quote de Durkheim"*
+
+
+![](images/durkheim.jpg)
+![](images/interpersonal.png)  
+![](images/Klonsky.png)  
 
 ## Theory - Suicide Morbidity 
 
+- 
+![](images/Okado.jpeg)  
 
 ## Machine Learning 
 
 ## Methods 
 
+
+
 ::: {.panel-tabset}
 ### Logistic Regression 
 - Model the outcome as a linear function of the predictors [@burkov2019]. 
-- Binary outcome --> Precludes the function from spanning from minus infinity to plus infinity, given that there are only two possible values [@burkov2019]. Therefore, the sigmoid function is applied to adjust the predictions to stay between 0 and 1 [@burkov2019]
 
-$$f(x) = \frac{1}{1+ e^{-x}}$$    
-![](images/logistic.png)
+- The sigmoid function is applied to adjust the predictions to stay between 0 and 1 [@burkov2019]
+
+- The predictors are selected from past literature modeling YRBSS data 
+
+![](images/logistic.png)  
+
 ### Lasso regression
+- Estimates the coefficients aiming at zero, this means that it uses shrinkage [@James2013].  
+
+- It is extremely useful for variable importance, selection, and regularization [@James2013]. 
+
+- This technique will select only relevant coefficients [@James2013]. 
+
 
 ### K-Nearest Neighbors (KNN)
+-  KNN will assign class membership to a data point with the majority vote of its K-nearest neighbors. 
 
 ![](images/knn.png)
 
-### Random Forest 
+- The three closest points to the test observation are identified, and it is predicted that the observation belongs to the most common class, in this case, blue circles [@James2013]
 
 ### Classification Trees 
+- Divides the feature space into non-overlapping rectangular regions with similar response rates that can later be used for prediction [@Greenwell2022].
+
+### Random Forest 
+- Random forest consists of hundreds or thousands of independently grown decision trees generated from different bootstrap samples from the training data [@Greenwell2022].
 
 ### Extreme Gradient Boosting (XGBoost)
+- Same concept of Random Forest but..
 
+- Each additional tree added to the model partially fixes the errors made by the previous trees until the maximum number of trees are combined [@burkov2019]
 :::
 ## Ethical Implications 
+ Minimal human subjects concerns
+ 
+ 1. The original data was not collected to answer the present research question
+ 2. Acknowledge the ownership of the original data. 
+ 3. Accidentally losing or destroying the data.
+ 
+
