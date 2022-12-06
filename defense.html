@@ -7,10 +7,10 @@
 <link href="defense_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="defense_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="defense_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.189">
+  <meta name="generator" content="quarto-1.0.37">
 
   <meta name="author" content="Catalina Cañizares. MSc; Mark J. Macgowan. Ph.D.; Gabriel Odom. Ph.D., Th.D.">
-  <title>A Comparison of Supervised Machine Learning Classification Methods to Identify Risk Factors for Suicide Morbidity Among USA High School Students</title>
+  <title>Comparing Supervised Machine Learning Classification Methods to Identify Risk Factors for Suicide Morbidity Among USA High School Students</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -19,15 +19,10 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -410,28 +405,16 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">A Comparison of Supervised Machine Learning Classification Methods to Identify Risk Factors for Suicide Morbidity Among USA High School Students</h1>
+  <h1 class="title">Comparing Supervised Machine Learning Classification Methods to Identify Risk Factors for Suicide Morbidity Among USA High School Students</h1>
   <p class="author">Catalina Cañizares. MSc; Mark J. Macgowan. Ph.D.; Gabriel Odom. Ph.D., Th.D.</p>
 </section>
 
-<section class="slide level2">
-
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># library(tidyverse)</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># library(tidyYRBS)</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># data("hs_district")</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># </span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># table(hs_district$age)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
 <section id="agenda" class="slide level2">
 <h2>Agenda</h2>
 <div>
 <ul>
-<li class="fragment">Background: Suicide Morbidity</li>
+<li class="fragment">Dfinitions</li>
+<li class="fragment">Background Suicide Morbidity</li>
 <li class="fragment">Significance of the study</li>
 <li class="fragment">Research aims</li>
 <li class="fragment">Theoretical Framework
@@ -446,31 +429,192 @@
 </section>
 <section id="definitions" class="slide level2">
 <h2>Definitions</h2>
-<div class="fragment">
-<!-- -->
-<h3 id="adolescents-10-19-years-of-age">Adolescents (10-19 years of age)</h3>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Adolescents</a></li><li><a href="#tabset-1-2">Suicide Ideation</a></li><li><a href="#tabset-1-3">Suicide Attempts</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
 <ul>
-<li>Is the phase of life between childhood and adulthood <span class="citation" data-cites="cdc">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">CDC, n.d.</a>)</span></li>
-<li>Adolescents experience rapid physical, cognitive and psychosocial growth <span class="citation" data-cites="cdc">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">CDC, n.d.</a>)</span></li>
+<li>10-19 years of age</li>
+<li>Is the phase of life between childhood and adulthood <span class="citation" data-cites="cdc">(<a href="#/ref-cdc" role="doc-biblioref" onclick="return false;">CDC, n.d.</a>)</span></li>
+<li>Adolescents experience rapid physical, cognitive and psychosocial growth <span class="citation" data-cites="cdc">(<a href="#/ref-cdc" role="doc-biblioref" onclick="return false;">CDC, n.d.</a>)</span></li>
 </ul>
 </div>
-<div class="fragment">
-<!-- -->
-<h3 id="suicide-ideation">Suicide Ideation</h3>
-<p>Any self-reported thoughts of engaging in suicide-related behaviors <span class="citation" data-cites="ocarroll1996">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">O’Carroll et al. 1996</a>)</span></p>
+<div id="tabset-1-2">
+<ul>
+<li>Any self-reported thoughts of engaging in suicide-related behaviors <span class="citation" data-cites="ocarroll1996">(<a href="#/ref-ocarroll1996" role="doc-biblioref" onclick="return false;">O’Carroll et al. 1996</a>)</span>
 <ul>
 <li>Considering</li>
 <li>Planning suicide</li>
+</ul></li>
 </ul>
 </div>
-<div class="fragment">
-<!-- -->
-<h3 id="suicide-attempts">Suicide Attempts</h3>
-<p>Any act that is self-inflicted and potentially injurious, for which there is evidence of <strong>intent to die</strong> <span class="citation" data-cites="silverman2007">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Silverman et al. 2007</a>)</span></p>
+<div id="tabset-1-3">
+<ul>
+<li><p>Any act that is self-inflicted and potentially injurious, for which there is evidence of <strong>intent to die</strong> <span class="citation" data-cites="silverman2007">(<a href="#/ref-silverman2007" role="doc-biblioref" onclick="return false;">Silverman et al. 2007</a>)</span></p></li>
+<li><p>A suicide attempt may result in death, injury, or no injury.</p></li>
+<li><p>Suicide <em>attempt I</em>: No injury</p></li>
+<li><p>Suicide <em>attempt II</em>: Any degree of injury <span class="citation" data-cites="silverman2007">(<a href="#/ref-silverman2007" role="doc-biblioref" onclick="return false;">Silverman et al. 2007</a>)</span></p></li>
+</ul>
+</div>
+</div>
 </div>
 </section>
 <section id="background" class="slide level2">
 <h2>Background</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Facts</a></li><li><a href="#tabset-2-2">Trends</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<ul>
+<li>Suicide is the third leading cause of death among 15-19 year-olds <span class="citation" data-cites="cdc_2022">(<a href="#/ref-cdc_2022" role="doc-biblioref" onclick="return false;">CDC 2022</a>)</span>.</li>
+<li>One in five (18.8%) students nationwide reported suicide ideation <span class="citation" data-cites="CDC2020">(<a href="#/ref-CDC2020" role="doc-biblioref" onclick="return false;">CDC 2020</a>)</span>.</li>
+<li>One in six (15.7%) students has made a suicide plan <span class="citation" data-cites="CDC2020">(<a href="#/ref-CDC2020" role="doc-biblioref" onclick="return false;">CDC 2020</a>)</span></li>
+<li>One in 11 (8.9%) has attempted suicide at least one time in their lifetime <span class="citation" data-cites="CDC2020">(<a href="#/ref-CDC2020" role="doc-biblioref" onclick="return false;">CDC 2020</a>)</span></li>
+<li>Suicide ideation and suicide attempts are the most commonly reported mental health crises among youth <span class="citation" data-cites="Standley2020">(<a href="#/ref-Standley2020" role="doc-biblioref" onclick="return false;">Standley 2020</a>)</span></li>
+</ul>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyYRBS)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(geomtextpath)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">data</span>(<span class="st">"hs_suicide"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">data</span>(<span class="st">"hs_demographics"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>the_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(hs_demographics, hs_suicide)</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># Weights</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>the_data_weights <span class="ot">&lt;-</span> the_data <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  srvyr<span class="sc">::</span><span class="fu">as_survey_design</span>(</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="at">ids=</span>PSU,</span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="at">weights=</span>weight,</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    <span class="at">strata=</span>stratum,</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="at">nest =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>  )</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co"># Preparing the data for the ggplot</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>considered <span class="ot">&lt;-</span> the_data_weights <span class="sc">%&gt;%</span> </span>
+<span id="cb1-21"><a href="#cb1-21"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-22"><a href="#cb1-22"></a>  <span class="fu">summarise</span>(<span class="at">prevalence =</span> <span class="fu">mean</span>(suicide_considered, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-23"><a href="#cb1-23"></a>            <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-24"><a href="#cb1-24"></a>  <span class="fu">mutate</span>(<span class="at">origin =</span> <span class="st">"Considered"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25"></a></span>
+<span id="cb1-26"><a href="#cb1-26"></a>attempts <span class="ot">&lt;-</span> the_data_weights <span class="sc">%&gt;%</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-28"><a href="#cb1-28"></a>    <span class="at">suicide_attempts =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-29"><a href="#cb1-29"></a>      suicide_attempts <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-30"><a href="#cb1-30"></a>      suicide_attempts <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-31"><a href="#cb1-31"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a>    )</span>
+<span id="cb1-33"><a href="#cb1-33"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb1-36"><a href="#cb1-36"></a>    <span class="at">prevalence =</span> <span class="fu">mean</span>(suicide_attempts, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-37"><a href="#cb1-37"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb1-38"><a href="#cb1-38"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>  <span class="fu">mutate</span>(<span class="at">origin =</span> <span class="st">"Attempts"</span>)</span>
+<span id="cb1-40"><a href="#cb1-40"></a>  </span>
+<span id="cb1-41"><a href="#cb1-41"></a>complete_data <span class="ot">&lt;-</span> considered <span class="sc">%&gt;%</span> </span>
+<span id="cb1-42"><a href="#cb1-42"></a>  <span class="fu">rbind</span>(attempts)</span>
+<span id="cb1-43"><a href="#cb1-43"></a></span>
+<span id="cb1-44"><a href="#cb1-44"></a><span class="fu">ggplot</span>(complete_data , <span class="fu">aes</span>(year, prevalence, <span class="at">label =</span> origin, <span class="at">color =</span> origin)) <span class="sc">+</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a>  <span class="fu">geom_smooth</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a>  <span class="fu">geom_textline</span>(<span class="at">hjust =</span> .<span class="dv">40</span>) <span class="sc">+</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span> </span>
+<span id="cb1-48"><a href="#cb1-48"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1990</span>, <span class="dv">2020</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb1-52"><a href="#cb1-52"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>)) <span class="sc">+</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">lim=</span><span class="fu">c</span>(.<span class="dv">0</span>, .<span class="dv">35</span>),</span>
+<span id="cb1-54"><a href="#cb1-54"></a>                     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.05</span>),</span>
+<span id="cb1-55"><a href="#cb1-55"></a>                     <span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb1-56"><a href="#cb1-56"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Suicide Morbidity Prevalence"</span>, <span class="at">x=</span><span class="st">""</span>,</span>
+<span id="cb1-57"><a href="#cb1-57"></a>       <span class="at">title=</span><span class="st">"Youth Prevalence of Suicide Morbidity"</span>,</span>
+<span id="cb1-58"><a href="#cb1-58"></a>       <span class="at">caption =</span> <span class="st">"Data from: YRBS, 1990-2019, tidyYRBS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="defense_files/figure-revealjs/unnamed-chunk-1-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="past-studies" class="slide level2">
+<h2>Past studies</h2>
+<iframe data-src="studies/Ati, 2020.pdf" width="500" height="500">
+</iframe>
+<iframe data-src="studies/Miranda, 2019.pdf" width="500" height="500">
+</iframe>
+<iframe data-src="studies/Franklin, 2017.pdf" width="500" height="500">
+</iframe>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="fragment">
+<div>
+<ul>
+<li class="fragment">Evaluated 66 studies from 2015 to 2019</li>
+<li class="fragment">Internal risk factors:
+<ul>
+<li class="fragment">Ineffective coping</li>
+<li class="fragment">Smartphone abuse</li>
+<li class="fragment">Nutritional imbalance</li>
+<li class="fragment">Disturbed sleep</li>
+</ul></li>
+<li class="fragment">External risk factors
+<ul>
+<li class="fragment">Family history of mental health</li>
+<li class="fragment">Poor interactions in the family</li>
+<li class="fragment">State of political regimes</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="fragment">
+<div>
+<ul>
+<li class="fragment">Evaluated 67 population-based longitudinal studies
+<ul>
+<li class="fragment">A history of previous suicidal thoughts and behaviors</li>
+<li class="fragment">Family history of mental disorders</li>
+<li class="fragment">Physical and psychological abuse</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="fragment">
+<div>
+<ul>
+<li class="fragment">Evaluated 365 longitudinal studies of the past 50 years of research</li>
+<li class="fragment">Risk factors have been homogeneous over time
+<ul>
+<li class="fragment">Demographic characteristics</li>
+<li class="fragment">Internalizing psychopathology</li>
+<li class="fragment">Prior history of suicide attempts</li>
+<li class="fragment">Externalizing psychopathology</li>
+<li class="fragment">Social factors</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="gaps" class="slide level2">
+<h2>Gaps</h2>
+<p><strong>The ability to predict suicide morbidity has been near chance for past 50 years of research <span class="citation" data-cites="franklin2017">(<a href="#/ref-franklin2017" role="doc-biblioref" onclick="return false;">Franklin et al. 2017</a>)</span></strong><br>
+- Most findings come from research designs that explore the effect of single risk factors <span class="citation" data-cites="franklin2017 burke2019 Ribeiro2012">Burke et al. (<a href="#/ref-burke2018" role="doc-biblioref" onclick="return false;">2018</a>)</span></p>
+<ul>
+<li><p>Although some models have used more than a single risk factor, most research relies on traditional statistical approaches that restrict the number of variables that can be simultaneously examined, creating overly simplistic models <span class="citation" data-cites="franklin2017">(<a href="#/ref-franklin2017" role="doc-biblioref" onclick="return false;">Franklin et al. 2017</a>)</span></p></li>
+<li><p>Traditional models presuppose that the researcher must define the relationship between predictors and outcomes a priori <span class="citation" data-cites="burke2019 cox2020 Linthicum2019">(<a href="#/ref-burke2019" role="doc-biblioref" onclick="return false;">Burke, Ammerman, and Jacobucci 2019</a>; <a href="#/ref-cox2020" role="doc-biblioref" onclick="return false;">Cox et al. 2020</a>; <a href="#/ref-Linthicum2019" role="doc-biblioref" onclick="return false;">Linthicum, Musacchio, and Ribeiro 2019</a>)</span>.</p></li>
+<li><p>Theoretically, the processes that facilitate suicide morbidity are complex and entail multiple interactions; therefore, any risk factor considered in isolation will be an inaccurate predictor :::</p></li>
+</ul>
 </section>
 <section id="signifance-of-the-study" class="slide level2">
 <h2>Signifance of the study</h2>
@@ -497,58 +641,119 @@
 <li><img data-src="images/Okado.jpeg"></li>
 </ul>
 </section>
+<section id="socioecological-model-for-suicide-morbidity" class="slide level2">
+<h2>Socioecological model for suicide morbidity</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="images/ecological.png"></p>
+</div><div class="column" style="width:50%;">
+<p><strong>Ontogenic system</strong></p>
+<ul>
+<li>demographic factors
+<ul>
+<li>sex, grade, race</li>
+</ul></li>
+<li>psychological factors
+<ul>
+<li>hopelessness</li>
+</ul></li>
+<li>risk behaviors
+<ul>
+<li>not wearing a seatbelt while driving</li>
+<li>driving while drinking alcohol</li>
+</ul></li>
+<li>substance behaviors
+<ul>
+<li>alcohol use</li>
+<li>marihuana use</li>
+<li>tobacco use</li>
+<li>pain killers</li>
+<li>cocaine and other illegal drug use</li>
+</ul></li>
+<li>weight-related behaviors
+<ul>
+<li>obesity</li>
+<li>dietary behaviors</li>
+<li>weight control practices</li>
+</ul></li>
+</ul>
+<p><strong>Microsystem level</strong></p>
+<ul>
+<li>violent risk behaviors
+<ul>
+<li>physical fights</li>
+<li>carrying a weapon to school</li>
+<li>being injured with a weapon</li>
+</ul></li>
+<li>sexual risk behaviors
+<ul>
+<li>sexual intercourse</li>
+<li>having sexual relations with multiple partners</li>
+<li>sexual abuse</li>
+</ul></li>
+<li>interpersonal relationship behaviors
+<ul>
+<li>bullied in school property</li>
+<li>cyberbullying</li>
+</ul></li>
+</ul>
+<p><strong>Exosystem level</strong> - School district</p>
+<p><strong>Macrosystem level</strong> - State.</p>
+</div>
+</div>
+</section>
 <section id="machine-learning" class="slide level2">
 <h2>Machine Learning</h2>
 </section>
 <section id="methods" class="slide level2">
 <h2>Methods</h2>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Logistic Regression</a></li><li><a href="#tabset-1-2">Lasso regression</a></li><li><a href="#tabset-1-3">K-Nearest Neighbors (KNN)</a></li><li><a href="#tabset-1-4">Classification Trees</a></li><li><a href="#tabset-1-5">Random Forest</a></li><li><a href="#tabset-1-6">Extreme Gradient Boosting (XGBoost)</a></li></ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Logistic Regression</a></li><li><a href="#tabset-3-2">Lasso regression</a></li><li><a href="#tabset-3-3">K-Nearest Neighbors (KNN)</a></li><li><a href="#tabset-3-4">Classification Trees</a></li><li><a href="#tabset-3-5">Random Forest</a></li><li><a href="#tabset-3-6">Extreme Gradient Boosting (XGBoost)</a></li></ul>
 <div class="tab-content">
-<div id="tabset-1-1">
+<div id="tabset-3-1">
 <ul>
-<li><p>Model the outcome as a linear function of the predictors <span class="citation" data-cites="burkov2019">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Burkov 2019</a>)</span>.</p></li>
-<li><p>The sigmoid function is applied to adjust the predictions to stay between 0 and 1 <span class="citation" data-cites="burkov2019">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Burkov 2019</a>)</span></p></li>
+<li><p>Model the outcome as a linear function of the predictors <span class="citation" data-cites="burkov2019">(<a href="#/ref-burkov2019" role="doc-biblioref" onclick="return false;">Burkov 2019</a>)</span>.</p></li>
+<li><p>The sigmoid function is applied to adjust the predictions to stay between 0 and 1 <span class="citation" data-cites="burkov2019">(<a href="#/ref-burkov2019" role="doc-biblioref" onclick="return false;">Burkov 2019</a>)</span></p></li>
 <li><p>The predictors are selected from past literature modeling YRBSS data</p></li>
 </ul>
 <p><img data-src="images/logistic.png"></p>
 </div>
-<div id="tabset-1-2">
+<div id="tabset-3-2">
 <ul>
-<li><p>Estimates the coefficients aiming at zero, this means that it uses shrinkage <span class="citation" data-cites="James2013">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">James et al. 2013</a>)</span>.</p></li>
-<li><p>It is extremely useful for variable importance, selection, and regularization <span class="citation" data-cites="James2013">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">James et al. 2013</a>)</span>.</p></li>
-<li><p>This technique will select only relevant coefficients <span class="citation" data-cites="James2013">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">James et al. 2013</a>)</span>.</p></li>
+<li><p>Estimates the coefficients aiming at zero, this means that it uses shrinkage <span class="citation" data-cites="James2013">(<a href="#/ref-James2013" role="doc-biblioref" onclick="return false;">James et al. 2013</a>)</span>.</p></li>
+<li><p>It is extremely useful for variable importance, selection, and regularization <span class="citation" data-cites="James2013">(<a href="#/ref-James2013" role="doc-biblioref" onclick="return false;">James et al. 2013</a>)</span>.</p></li>
+<li><p>This technique will select only relevant coefficients <span class="citation" data-cites="James2013">(<a href="#/ref-James2013" role="doc-biblioref" onclick="return false;">James et al. 2013</a>)</span>.</p></li>
 </ul>
 </div>
-<div id="tabset-1-3">
+<div id="tabset-3-3">
 <ul>
 <li>KNN will assign class membership to a data point with the majority vote of its K-nearest neighbors.</li>
 </ul>
 <p><img data-src="images/knn.png"></p>
 <ul>
-<li>The three closest points to the test observation are identified, and it is predicted that the observation belongs to the most common class, in this case, blue circles <span class="citation" data-cites="James2013">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">James et al. 2013</a>)</span></li>
+<li>The three closest points to the test observation are identified, and it is predicted that the observation belongs to the most common class, in this case, blue circles <span class="citation" data-cites="James2013">(<a href="#/ref-James2013" role="doc-biblioref" onclick="return false;">James et al. 2013</a>)</span></li>
 </ul>
 </div>
-<div id="tabset-1-4">
+<div id="tabset-3-4">
 <ul>
-<li>Divides the feature space into non-overlapping rectangular regions with similar response rates that can later be used for prediction <span class="citation" data-cites="Greenwell2022">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Greenwell 2022</a>)</span>.</li>
+<li>Divides the feature space into non-overlapping rectangular regions with similar response rates that can later be used for prediction <span class="citation" data-cites="Greenwell2022">(<a href="#/ref-Greenwell2022" role="doc-biblioref" onclick="return false;">Greenwell 2022</a>)</span>.</li>
 </ul>
 </div>
-<div id="tabset-1-5">
+<div id="tabset-3-5">
 <ul>
-<li>Random forest consists of hundreds or thousands of independently grown decision trees generated from different bootstrap samples from the training data <span class="citation" data-cites="Greenwell2022">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Greenwell 2022</a>)</span>.</li>
+<li>Random forest consists of hundreds or thousands of independently grown decision trees generated from different bootstrap samples from the training data <span class="citation" data-cites="Greenwell2022">(<a href="#/ref-Greenwell2022" role="doc-biblioref" onclick="return false;">Greenwell 2022</a>)</span>.</li>
 </ul>
 </div>
-<div id="tabset-1-6">
+<div id="tabset-3-6">
 <ul>
 <li><p>Same concept of Random Forest but..</p></li>
-<li><p>Each additional tree added to the model partially fixes the errors made by the previous trees until the maximum number of trees are combined <span class="citation" data-cites="burkov2019">(<a href="#/ethical-implications" role="doc-biblioref" onclick="">Burkov 2019</a>)</span></p></li>
+<li><p>Each additional tree added to the model partially fixes the errors made by the previous trees until the maximum number of trees are combined <span class="citation" data-cites="burkov2019">(<a href="#/ref-burkov2019" role="doc-biblioref" onclick="return false;">Burkov 2019</a>)</span></p></li>
 </ul>
 </div>
 </div>
 </div>
 </section>
-<section id="ethical-implications" class="slide level2 smaller scrollable">
+<section id="ethical-implications" class="slide level2">
 <h2>Ethical Implications</h2>
 <p>Minimal human subjects concerns</p>
 <ol type="1">
@@ -556,16 +761,37 @@
 <li>Acknowledge the ownership of the original data.</li>
 <li>Accidentally losing or destroying the data.</li>
 </ol>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/FIU_PHSW.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p>Dissertation Proposal</p>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-burke2019" class="csl-entry" role="doc-biblioentry">
+Burke, Taylor A., Brooke A. Ammerman, and Ross Jacobucci. 2019. <span>“The Use of Machine Learning in the Study of Suicidal and Non-Suicidal Self-Injurious Thoughts and Behaviors: <span>A</span> Systematic Review.”</span> <em>Journal of Affective Disorders</em> 245 (February): 869–84. <a href="https://doi.org/10.1016/j.jad.2018.11.073">https://doi.org/10.1016/j.jad.2018.11.073</a>.
+</div>
+<div id="ref-burke2018" class="csl-entry" role="doc-biblioentry">
+Burke, Taylor A., Ross Jacobucci, Brooke A. Ammerman, Marilyn Piccirillo, Michael S. McCloskey, Richard G. Heimberg, and Lauren B. Alloy. 2018. <span>“Identifying the Relative Importance of Non-Suicidal Self-Injury Features in Classifying Suicidal Ideation, Plans, and Behavior Using Exploratory Data Mining.”</span> <em>Psychiatry Research</em> 262 (April): 175–83. <a href="https://doi.org/10.1016/j.psychres.2018.01.045">https://doi.org/10.1016/j.psychres.2018.01.045</a>.
+</div>
 <div id="ref-burkov2019" class="csl-entry" role="doc-biblioentry">
 Burkov, A. 2019. <em>The Hundred-Page Machine Learning Book</em>. Andriy Burkov. <a href="https://books.google.com/books?id=ZF3KwQEACAAJ">https://books.google.com/books?id=ZF3KwQEACAAJ</a>.
 </div>
+<div id="ref-CDC2020" class="csl-entry" role="doc-biblioentry">
+CDC. 2020. <span>“2019 YRBS National, State, and District Combined Datasets User’s Guide.”</span> Dataset.
+</div>
+<div id="ref-cdc_2022" class="csl-entry" role="doc-biblioentry">
+———. 2022. <span>“Adolescent Health.”</span> <em>Centers for Disease Control and Prevention</em>. Centers for Disease Control; Prevention. <a href="https://www.cdc.gov/nchs/fastats/adolescent-health.htm">https://www.cdc.gov/nchs/fastats/adolescent-health.htm</a>.
+</div>
 <div id="ref-cdc" class="csl-entry" role="doc-biblioentry">
-CDC. n.d. <span>“Adolescent Health.”</span> Web Page. <a href="https://www.who.int/health-topics/adolescent-health#tab=tab_2">https://www.who.int/health-topics/adolescent-health#tab=tab_2</a>.
+———. n.d. <span>“Adolescent Health.”</span> Web Page. <a href="https://www.who.int/health-topics/adolescent-health#tab=tab_2">https://www.who.int/health-topics/adolescent-health#tab=tab_2</a>.
+</div>
+<div id="ref-cox2020" class="csl-entry" role="doc-biblioentry">
+Cox, Christopher R., Emma H. Moscardini, Alex S. Cohen, and Raymond P. Tucker. 2020. <span>“Machine Learning for Suicidology: <span>A</span> Practical Review of Exploratory and Hypothesis-Driven Approaches.”</span> <em>Clinical Psychology Review</em> 82 (December): 101940. <a href="https://doi.org/10.1016/j.cpr.2020.101940">https://doi.org/10.1016/j.cpr.2020.101940</a>.
+</div>
+<div id="ref-franklin2017" class="csl-entry" role="doc-biblioentry">
+Franklin, Joseph C., Jessica D. Ribeiro, Kathryn R. Fox, Kate H. Bentley, Evan M. Kleiman, Xieyining Huang, Katherine M. Musacchio, Adam C. Jaroszewski, Bernard P. Chang, and Matthew K. Nock. 2017. <span>“Risk Factors for Suicidal Thoughts and Behaviors: <span>A</span> Meta-Analysis of 50 Years of Research.”</span> <em>Psychological Bulletin</em> 143 (2): 187–232. <a href="https://doi.org/10.1037/bul0000084">https://doi.org/10.1037/bul0000084</a>.
 </div>
 <div id="ref-Greenwell2022" class="csl-entry" role="doc-biblioentry">
 Greenwell, Brandon M. 2022. <em>Tree-Based Methods for Statistical Learning in r</em>. Chapman &amp; Hall/CRC Data Science Series. Boca Raton, FL: CRC Press.
@@ -573,11 +799,20 @@ Greenwell, Brandon M. 2022. <em>Tree-Based Methods for Statistical Learning in r
 <div id="ref-James2013" class="csl-entry" role="doc-biblioentry">
 James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2013. <em>An Introduction to Statistical Learning: With Applications in r</em>. Springer. <a href="https://faculty.marshall.usc.edu/gareth-james/ISL/">https://faculty.marshall.usc.edu/gareth-james/ISL/</a>.
 </div>
+<div id="ref-Linthicum2019" class="csl-entry" role="doc-biblioentry">
+Linthicum, Kathryn, Katherine Musacchio, and Jessica Ribeiro. 2019. <span>“Machine Learning in Suicide Science: Applications and Ethics.”</span> <em>Behavioral Sciences &amp; the Law</em> 37 (May). <a href="https://doi.org/10.1002/bsl.2392">https://doi.org/10.1002/bsl.2392</a>.
+</div>
 <div id="ref-ocarroll1996" class="csl-entry" role="doc-biblioentry">
 O’Carroll, P, A Berman, R W Maris, E K Moscicki, B L Tanney, and M M Silverman. 1996. <span>“Beyond the Tower of Babel: A Nomenclature for Suicidology.”</span> Journal Article. <em>Suicide Life Threat Behav</em> 26 (3): 237–52.
 </div>
+<div id="ref-Ribeiro2012" class="csl-entry" role="doc-biblioentry">
+Ribeiro, J. D., J. C. Franklin, K. R. Fox, K. H. Bentley, E. M. Kleiman, B. P. Chang, and M. K. Nock. 2016. <span>“Letter to the Editor: Suicide as a Complex Classification Problem: Machine Learning and Related Techniques Can Advance Suicide Prediction - a Reply to Roaldset (2016).”</span> Journal Article. <em>Psychol Med</em> 46 (9): 2009–10. <a href="https://doi.org/10.1017/s0033291716000611">https://doi.org/10.1017/s0033291716000611</a>.
+</div>
 <div id="ref-silverman2007" class="csl-entry" role="doc-biblioentry">
 Silverman, Morton M., Alan L. Berman, Nels D. Sanddal, W. O’Carroll Patrick, and Joiner Thomas E. 2007. <span>“Rebuilding the Tower of Babel: A Revised Nomenclature for the Study of Suicide and Suicidal Behaviors: Part 2: Suicide-Related Ideations, Communications, and Behaviors.”</span> <em>Suicide &amp; Life - Threatening Behavior</em> 37 (3): 264–77. <a href="https://www.proquest.com/scholarly-journals/rebuilding-tower-babel-revised-nomenclature-study/docview/224871202/se-2">https://www.proquest.com/scholarly-journals/rebuilding-tower-babel-revised-nomenclature-study/docview/224871202/se-2</a>.
+</div>
+<div id="ref-Standley2020" class="csl-entry" role="doc-biblioentry">
+Standley, Corbin. 2020. <span>“Expanding Our Paradigms: Intersectional and Socioecological Approaches to Suicide Prevention.”</span> <em>Death Studies</em> 46 (February). <a href="https://doi.org/10.1080/07481187.2020.1725934">https://doi.org/10.1080/07481187.2020.1725934</a>.
 </div>
 </div>
 </section>
@@ -904,8 +1139,7 @@ Silverman, Morton M., Alan L. Berman, Nels D. Sanddal, W. O’Carroll Patrick, a
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          let href = ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);

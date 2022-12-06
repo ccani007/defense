@@ -1,5 +1,5 @@
 ---
-title: "A Comparison of Supervised Machine Learning Classification Methods to Identify Risk Factors for Suicide Morbidity Among USA High School Students" 
+title: "Comparing Supervised Machine Learning Classification Methods to Identify Risk Factors for Suicide Morbidity Among USA High School Students" 
 author: "Catalina Cañizares. MSc; Mark J. Macgowan. Ph.D.; Gabriel Odom. Ph.D., Th.D."
 bibliography: references.bib
 format: 
@@ -17,19 +17,12 @@ format:
 editor_options: 
   chunk_output_type: console
 ---
-```{r}
-# library(tidyverse)
-# library(tidyYRBS)
-# data("hs_district")
-# 
-# table(hs_district$age)
-```
-
 
 ## Agenda
 
 ::: {.incremental}
-- Background: Suicide Morbidity
+- Dfinitions
+- Background Suicide Morbidity
 - Significance of the study
 - Research aims 
 - Theoretical Framework
@@ -40,26 +33,166 @@ editor_options:
 :::
 
 ## Definitions
-::: {.fragment}
-### Adolescents (10-19 years of age)
+
+::: {.panel-tabset}
+
+### Adolescents 
+- 10-19 years of age
 - Is the phase of life between childhood and adulthood [@cdc]
 - Adolescents experience rapid physical, cognitive and psychosocial growth [@cdc]
-:::
-::: {.fragment}
+
 ### Suicide Ideation
-Any self-reported thoughts of engaging in suicide-related behaviors [@ocarroll1996]  
+- Any self-reported thoughts of engaging in suicide-related behaviors [@ocarroll1996]  
+  - Considering
+  - Planning suicide
 
-- Considering
-- Planning suicide
-:::
-
-::: {.fragment}
 ### Suicide Attempts
-Any act that is self-inflicted and potentially injurious, for which there is evidence of **intent to die** [@silverman2007]
+- Any act that is self-inflicted and potentially injurious, for which there is evidence of **intent to die** [@silverman2007]
+
+-  A suicide attempt may result in death, injury, or no injury. 
+
+- Suicide *attempt I*: No injury 
+
+- Suicide  *attempt II*: Any degree of injury [@silverman2007]
 :::
 
 ## Background 
 
+::: {.panel-tabset}
+### Facts 
+- Suicide is the third leading cause of death among 15-19 year-olds [@cdc_2022].
+- One in five (18.8%) students nationwide reported suicide ideation [@CDC2020]. 
+- One in six (15.7%) students has made a suicide plan [@CDC2020]
+- One in 11 (8.9%) has attempted suicide at least one time in their lifetime [@CDC2020]
+- Suicide ideation and suicide attempts are the most commonly reported mental health crises among youth [@Standley2020]
+
+### Trends
+
+```{r}
+library(tidyYRBS)
+library(geomtextpath)
+library(tidyverse)
+
+data("hs_suicide")
+data("hs_demographics")
+
+the_data <- left_join(hs_demographics, hs_suicide)
+
+# Weights
+the_data_weights <- the_data |>
+  srvyr::as_survey_design(
+    ids=PSU,
+    weights=weight,
+    strata=stratum,
+    nest = TRUE
+  )
+
+# Preparing the data for the ggplot
+considered <- the_data_weights %>% 
+  group_by(year) %>% 
+  summarise(prevalence = mean(suicide_considered, na.rm = TRUE),
+            n = n()) %>% 
+  mutate(origin = "Considered")
+
+attempts <- the_data_weights %>%
+  mutate(
+    suicide_attempts = case_when(
+      suicide_attempts == 0 ~ FALSE,
+      suicide_attempts %in% 1:6 ~ TRUE,
+      TRUE ~ NA
+    )
+  ) %>%
+  group_by(year) %>%
+  summarise(
+    prevalence = mean(suicide_attempts, na.rm = TRUE),
+    n = n()
+  ) %>%
+  mutate(origin = "Attempts")
+  
+complete_data <- considered %>% 
+  rbind(attempts)
+
+ggplot(complete_data , aes(year, prevalence, label = origin, color = origin)) +
+  geom_smooth(alpha = 0.1, size = 0) +
+  geom_textline(hjust = .40) +
+  scale_color_brewer(palette = "Dark2") + 
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none") +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  scale_x_continuous(breaks = seq(1990, 2020, 2)) +
+  theme(axis.text.x = element_text(angle = 90)) +
+  scale_y_continuous(lim=c(.0, .35),
+                     breaks = seq(0, 1, 0.05),
+                     labels = scales::percent) +
+  labs(y="Suicide Morbidity Prevalence", x="",
+       title="Youth Prevalence of Suicide Morbidity",
+       caption = "Data from: YRBS, 1990-2019, tidyYRBS")
+
+
+
+```
+
+:::
+
+
+## Past studies 
+<iframe data-src="studies/Ati, 2020.pdf" width="500" height="500"></iframe>
+<iframe data-src="studies/Miranda, 2019.pdf" width="500" height="500"></iframe>
+<iframe data-src="studies/Franklin, 2017.pdf" width="500" height="500"></iframe>
+
+::::: {.columns}
+:::: {.column width="33%"}
+::: {.fragment}
+::: {.incremental}
+- Evaluated 66 studies from 2015 to 2019 
+- Internal risk factors:
+    - Ineffective coping
+    - Smartphone abuse
+    - Nutritional imbalance
+    - Disturbed sleep
+- External risk factors 
+    - Family history of mental health
+    - Poor interactions in the family 
+    - State of political regimes
+:::
+:::
+::::
+:::: {.column width="33%"}
+::: {.fragment}
+::: {.incremental}
+- Evaluated 67 population-based longitudinal studies
+  - A history of previous suicidal thoughts and behaviors
+  - Family history of mental disorders 
+  - Physical and psychological abuse 
+:::
+:::
+::::
+:::: {.column width="33%"}
+::: {.fragment}
+::: {.incremental}
+- Evaluated 365 longitudinal studies of the past 50 years of research 
+- Risk factors have been homogeneous over time
+    - Demographic characteristics
+    - Internalizing psychopathology
+    - Prior history of suicide attempts
+    - Externalizing psychopathology
+    - Social factors
+:::
+:::
+::::
+:::::
+
+## Gaps
+
+**The ability to predict suicide morbidity has been near chance for past 50 years of research [@franklin2017]**  
+- Most findings come from research designs that explore the effect of single risk factors  [@franklin2017, @burke2018; @burke2019; @Ribeiro2012]
+
+-  Although some models have used more than a single risk factor, most research relies on traditional statistical approaches that restrict the number of variables that can be simultaneously examined, creating overly simplistic models [@franklin2017]
+
+- Traditional models presuppose that the researcher must define the relationship between predictors and outcomes a priori [@burke2019; @cox2020; @Linthicum2019].
+
+- Theoretically, the processes that facilitate suicide morbidity are complex and entail multiple interactions; therefore, any risk factor considered in isolation will be an inaccurate predictor
+:::
 
 ## Signifance of the study 
 
@@ -90,12 +223,64 @@ Any act that is self-inflicted and potentially injurious, for which there is evi
 - 
 ![](images/Okado.jpeg)  
 
+## Socioecological model for suicide morbidity
+
+::::: {.columns}
+:::: {.column width="50%"}
+![](images/ecological.png)
+::::
+
+:::: {.column width="50%"}
+**Ontogenic system**
+
+- demographic factors 
+  - sex, grade, race
+
+- psychological factors 
+  - hopelessness
+
+- risk behaviors 
+  - not wearing a seatbelt while driving
+  - driving while drinking alcohol
+  
+- substance behaviors 
+  - alcohol use
+  - marihuana use
+  - tobacco use
+  - pain killers
+  - cocaine and other illegal drug use
+  
+- weight-related behaviors 
+  - obesity
+  - dietary behaviors
+  - weight control practices
+
+**Microsystem level**
+
+- violent risk behaviors
+  - physical fights
+  - carrying a weapon to school
+  - being injured with a weapon
+  
+- sexual risk behaviors 
+  - sexual intercourse
+  - having sexual relations with multiple partners
+  - sexual abuse
+  
+- interpersonal relationship behaviors 
+  - bullied in school property 
+  - cyberbullying
+
+**Exosystem level**
+- School district
+
+**Macrosystem level** 
+- State. 
+:::
+:::::
 ## Machine Learning 
 
 ## Methods 
-
-
-
 ::: {.panel-tabset}
 ### Logistic Regression 
 - Model the outcome as a linear function of the predictors [@burkov2019]. 
@@ -139,4 +324,5 @@ Any act that is self-inflicted and potentially injurious, for which there is evi
  2. Acknowledge the ownership of the original data. 
  3. Accidentally losing or destroying the data.
  
+## References
 
