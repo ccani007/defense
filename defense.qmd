@@ -20,55 +20,58 @@ editor_options:
 
 ## Agenda
 
-::: {.incremental}
-- Dfinitions
-- Background Suicide Morbidity
-- Significance of the study
-- Research aims 
-- Theoretical Framework
-  - Suicide Morbidity 
-  - Machine Learning
-- Methods
-- Ethical Implications
+::: incremental
+-   Dfinitions
+-   Background Suicide Morbidity
+-   Significance of the study
+-   Research aims
+-   Theoretical Framework
+    -   Suicide Morbidity
+    -   Machine Learning
+-   Methods
+-   Ethical Implications
 :::
 
 ## Definitions
 
-::: {.panel-tabset}
+::: panel-tabset
+### Adolescents
 
-### Adolescents 
-- 10-19 years of age
-- Is the phase of life between childhood and adulthood [@cdc]
-- Adolescents experience rapid physical, cognitive and psychosocial growth [@cdc]
+-   10-19 years of age
+-   Is the phase of life between childhood and adulthood [@cdc]
+-   Adolescents experience rapid physical, cognitive and psychosocial growth [@cdc]
 
 ### Suicide Ideation
-- Any self-reported thoughts of engaging in suicide-related behaviors [@ocarroll1996]  
-  - Considering
-  - Planning suicide
+
+-   Any self-reported thoughts of engaging in suicide-related behaviors [@ocarroll1996]
+    -   Considering
+    -   Planning suicide
 
 ### Suicide Attempts
-- Any act that is self-inflicted and potentially injurious, for which there is evidence of **intent to die** [@silverman2007]
 
--  A suicide attempt may result in death, injury, or no injury. 
+-   Any act that is self-inflicted and potentially injurious, for which there is evidence of **intent to die** [@silverman2007]
 
-- Suicide *attempt I*: No injury 
+-   A suicide attempt may result in death, injury, or no injury.
 
-- Suicide  *attempt II*: Any degree of injury [@silverman2007]
+-   Suicide *attempt I*: No injury
+
+-   Suicide *attempt II*: Any degree of injury [@silverman2007]
 :::
 
-## Background 
+## Background
 
-::: {.panel-tabset}
-### Facts 
-- Suicide is the third leading cause of death among 15-19 year-olds [@cdc_2022].
-- One in five (18.8%) students nationwide reported suicide ideation [@CDC2020]. 
-- One in six (15.7%) students has made a suicide plan [@CDC2020]
-- One in 11 (8.9%) has attempted suicide at least one time in their lifetime [@CDC2020]
-- Suicide ideation and suicide attempts are the most commonly reported mental health crises among youth [@Standley2020]
+::: panel-tabset
+### Facts
 
-### Trends
+-   Suicide is the third leading cause of death among 15-19 year-olds [@cdc_2022].
+-   One in five (18.8%) students nationwide reported suicide ideation [@CDC2020].
+-   One in six (15.7%) students has made a suicide plan [@CDC2020]
+-   One in 11 (8.9%) has attempted suicide at least one time in their lifetime [@CDC2020]
+-   Suicide ideation and suicide attempts are the most commonly reported mental health crises among youth [@Standley2020]
 
-```{r}
+### Trends 
+
+```{r fig.align='center', fig.width=20, fig.height=7, dev='svg'}
 library(tidyYRBS)
 library(geomtextpath)
 library(tidyverse)
@@ -114,13 +117,16 @@ complete_data <- considered %>%
 
 ggplot(complete_data , aes(year, prevalence, label = origin, color = origin)) +
   geom_smooth(alpha = 0.1, size = 0) +
-  geom_textline(hjust = .40) +
-  scale_color_brewer(palette = "Dark2") + 
-  theme_minimal(base_size = 12) +
+  geom_textline(hjust = .40, size = 10) +
+  scale_color_manual(values = c("#4e2d86", "#24bccb")) + 
+  theme_minimal(base_size = 28) +
   theme(legend.position = "none") +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(1990, 2020, 2)) +
   theme(axis.text.x = element_text(angle = 90)) +
+  theme(panel.background = element_rect(fill = "#f0f1eb",
+                                colour = "#f0f1eb")) +
+  theme(plot.background = element_rect(fill = "#f0f1eb", colour = "#f0f1eb")) +
   scale_y_continuous(lim=c(.0, .35),
                      breaks = seq(0, 1, 0.05),
                      labels = scales::percent) +
@@ -131,198 +137,468 @@ ggplot(complete_data , aes(year, prevalence, label = origin, color = origin)) +
 
 
 ```
+:::
 
+## Past studies
+
+<iframe data-src="studies/Ati, 2020.pdf" width="500" height="500">
+
+</iframe>
+
+<iframe data-src="studies/Miranda, 2019.pdf" width="500" height="500">
+
+</iframe>
+
+<iframe data-src="studies/Franklin, 2017.pdf" width="500" height="500">
+
+</iframe>
+
+::: columns
+::: {.column width="33%"}
+::: fragment
+-   Evaluated 66 studies from 2015 to 2019
+-   Internal risk factors:
+    -   Ineffective coping
+    -   Smartphone abuse
+    -   Nutritional imbalance
+    -   Disturbed sleep
+-   External risk factors
+    -   Family history of mental health
+    -   Poor interactions in the family
+    -   State of political regimes
+:::
+:::
+
+
+::: {.column width="33%"}
+::: fragment
+-   Evaluated 67 population-based longitudinal studies
+    -   A history of previous suicidal thoughts and behaviors
+    -   Family history of mental disorders
+    -   Physical and psychological abuse
+:::
+:::
+
+::: {.column width="33%"}
+::: fragment
+-   Evaluated 365 longitudinal studies of the past 50 years of research
+-   Risk factors have been homogeneous over time
+    -   Demographic characteristics
+    -   Internalizing psychopathology
+    -   Prior history of suicide attempts
+    -   Externalizing psychopathology
+    -   Social factors
+:::
+:::
 :::
 
 
-## Past studies 
-<iframe data-src="studies/Ati, 2020.pdf" width="500" height="500"></iframe>
-<iframe data-src="studies/Miranda, 2019.pdf" width="500" height="500"></iframe>
-<iframe data-src="studies/Franklin, 2017.pdf" width="500" height="500"></iframe>
+## Gaps 
 
-::::: {.columns}
-:::: {.column width="33%"}
-::: {.fragment}
-::: {.incremental}
-- Evaluated 66 studies from 2015 to 2019 
-- Internal risk factors:
-    - Ineffective coping
-    - Smartphone abuse
-    - Nutritional imbalance
-    - Disturbed sleep
-- External risk factors 
-    - Family history of mental health
-    - Poor interactions in the family 
-    - State of political regimes
-:::
-:::
-::::
-:::: {.column width="33%"}
-::: {.fragment}
-::: {.incremental}
-- Evaluated 67 population-based longitudinal studies
-  - A history of previous suicidal thoughts and behaviors
-  - Family history of mental disorders 
-  - Physical and psychological abuse 
-:::
-:::
-::::
-:::: {.column width="33%"}
-::: {.fragment}
-::: {.incremental}
-- Evaluated 365 longitudinal studies of the past 50 years of research 
-- Risk factors have been homogeneous over time
-    - Demographic characteristics
-    - Internalizing psychopathology
-    - Prior history of suicide attempts
-    - Externalizing psychopathology
-    - Social factors
-:::
-:::
-::::
-:::::
+::: incremental
+**The ability to predict suicide morbidity has been near chance for past 50 years of research [@franklin2017]**
 
-## Gaps
+-   Most findings come from research designs that explore the effect of **single risk factors** [@franklin2017; @burke2018; @burke2019; @Ribeiro2012]
 
-**The ability to predict suicide morbidity has been near chance for past 50 years of research [@franklin2017]**  
-- Most findings come from research designs that explore the effect of single risk factors  [@franklin2017, @burke2018; @burke2019; @Ribeiro2012]
+-   Although some models have used more than a single risk factor, most research relies on traditional statistical approaches that **restrict** the number of variables that can be simultaneously examined, creating overly simplistic models [@franklin2017]
 
--  Although some models have used more than a single risk factor, most research relies on traditional statistical approaches that restrict the number of variables that can be simultaneously examined, creating overly simplistic models [@franklin2017]
+-   Traditional models presuppose that the **researcher must define the relationship** between predictors and outcomes a priori [@burke2019; @cox2020; @Linthicum2019].
 
-- Traditional models presuppose that the researcher must define the relationship between predictors and outcomes a priori [@burke2019; @cox2020; @Linthicum2019].
-
-- Theoretically, the processes that facilitate suicide morbidity are complex and entail multiple interactions; therefore, any risk factor considered in isolation will be an inaccurate predictor
+-   Theoretically, the processes that facilitate suicide morbidity are **complex** and entail **multiple interactions**; therefore, any risk factor considered in isolation will be an inaccurate predictor
 :::
 
-## Signifance of the study 
+# A shift in research is needed to capture the complexities behind adolescent suicide morbidity  
+
+## Significance of the study
 
 
+::: fragment
+
+- Study suicide morbidity as a **complex classification problem** that considers multiple risk factors simultaneously [@Ribeiro2012; @Linthicum2019]. 
+
+- Machine Learning methods considers highly complex relations among variables to determine the optimal classification algorithm [@Ribeiro2012; @Bernet2020; @Linthicum2019].
+
+:::
+
+::: fragment
+**Study suicide morbidity in adolescents:** 
+
+1. Using flexible methodological techniques
+
+2. Using  methods with better predictability performance
+
+3. Risk algorithms instead of single risk factors 
+:::
+
+## Machine learning in Suicidology
+<iframe data-src="studies/Burke, 2019.pdf" width="1000" height="500"></iframe>
+
+::: fragment
+-  35 independent studies used ML to predict suicide-related events
+- More accurate levels of performance in predictions over traditional statistical methodology (AUCs = 0.80–0.84) 
+:::
+::: fragment
+<mark>There is a scarcity of research using adolescent population </mark>
+:::
 ## Research aims
-1. Identify the critical risk factors for adolescent suicide morbidity from a set of 99 risk behavior predictors with machine learning classification algorithms.   
 
-2. Identify the **best** machine learning methodology to classify adolescents who attempted and considered suicide according to its classification performance (ROC, overall accuracy, and the Kappa value). 
+1.  Identify the critical risk factors for adolescent suicide morbidity from a set of 99 risk behavior predictors with machine learning classification algorithms.
 
-3. Compare the performance of an a priori-determined model to models informed by feature selection from the least absolute shrinkage and selection operator method.   
+2.  Identify the **best** machine learning methodology to classify adolescents who attempted and considered suicide according to its classification performance (ROC, overall accuracy, and the Kappa value).
 
-4. Identify if there are differences in the critical risk factors for suicide ideation and suicide attempts.   
+3.  Compare the performance of an a priori-determined model to models informed by feature selection from the least absolute shrinkage and selection operator method.
 
-
-## Theory - Suicide Morbidity 
-*"quote de Durkheim"*
-
-
-![](images/durkheim.png){.absolute top=200 left=0 width="300" height="300"}  
-
-![](images/interpersonal.png) {.absolute top=200 left=0 width="350" height="300"}  
-
-
-![](images/Klonsky.png){.absolute top=200 left=0 width="350" height="300"} 
-
-## Theory - Suicide Morbidity 
-
-- 
-![](images/Okado.jpeg)  
+4.  Identify if there are differences in the critical risk factors for suicide ideation and suicide attempts.
 
 ## Socioecological model for suicide morbidity
 
-::::: {.columns}
-:::: {.column width="50%"}
-![](images/ecological.png)
-::::
+::: panel-tabset
 
-:::: {.column width="50%"}
-**Ontogenic system**
+### Applied to youth
 
-- demographic factors 
-  - sex, grade, race
+*Conceives human development as the constant interaction between the individual and the changing environment in which it lives and grows [@Bronfenbrenner1977].*
 
-- psychological factors 
-  - hopelessness
+::: fragment
+::: columns
+::: {.column width="50%"}
+**Ontogenic**
 
-- risk behaviors 
-  - not wearing a seatbelt while driving
-  - driving while drinking alcohol
-  
-- substance behaviors 
-  - alcohol use
-  - marihuana use
-  - tobacco use
-  - pain killers
-  - cocaine and other illegal drug use
-  
-- weight-related behaviors 
-  - obesity
-  - dietary behaviors
-  - weight control practices
+- Sex  
+- Race  
+- Age  
 
-**Microsystem level**
+**Microsystem**
 
-- violent risk behaviors
-  - physical fights
-  - carrying a weapon to school
-  - being injured with a weapon
-  
-- sexual risk behaviors 
-  - sexual intercourse
-  - having sexual relations with multiple partners
-  - sexual abuse
-  
-- interpersonal relationship behaviors 
-  - bullied in school property 
-  - cyberbullying
-
-**Exosystem level**
-- School district
-
-**Macrosystem level** 
-- State. 
+- Family members  
+- Friends  
+- School  
 :::
-:::::
+
+::: {.column width="50%"}
+
+**Exosystem**
+
+- The media  
+- Neighborhood  
+
+**Macrosystem**
+
+- economic, social, educational, legal, and political systems
+:::
+:::
+::: 
+
+### Applied to this research 
+
+![](images/the_model.drawio.svg)
+
+### Rationale 
+
+- Allows to study adolescent suicide morbidity as the interaction of multiple risk factors at multiple levels of the adolescent system [@Perkins2002].
+
+- Moves beyond the tendency to evaluate only individualistic characteristics of adolescents. 
+
+-  Cumulative risk: Exposure to risk factors in the different systems increases the probability of engaging in suicidal ideation or attemts [@Perkins2002]
+:::
+
 ## Machine Learning 
 
-## Methods 
-::: {.panel-tabset}
-### Logistic Regression 
-- Model the outcome as a linear function of the predictors [@burkov2019]. 
+::: panel-tabset
 
-- The sigmoid function is applied to adjust the predictions to stay between 0 and 1 [@burkov2019]
+### Supervised Machine Learning
 
-- The predictors are selected from past literature modeling YRBSS data 
+Supervised machine learning learns from data to detect patterns [@Elhai2020; @teboul_2018]
 
-![](images/logistic.png)  
+- Will find the function that maps the predictors to the outcomes [@stewart_2020]
+- The result is an algorithm representing the closest possible match to the behavior of the data
+- Before the algorithm is tested, model tuning is performed to achieve more accurate predictions
+- The tuning is performed for the hyperparameters [@Kuhn2022].
+- The algorithm is evaluated by its performance in predicting the outcome [@Kuhn2022]
+- R eceiver operating characteristic (ROC), overall accuracy, and the Kappa value 
+
+### Simple example
+
+![](images/ml.png)
+
+How supervised learning works. *Source:*Pickell, Devin. 2021. “Supervised Vs Unsupervised Learning – What’s the Difference?” G2. https://www.g2.com/articles/supervised-vs-unsupervised-learning.
+
+### Rationale 
+
+::: Incremental
+ -  ML methods are recommended and well suited for classification problems that involve **high dimensional data** (a large number of potential predictors) [@Iniesta; @walsh2018; @Elhai2020; @bzdok2018]
+ 
+ - ML is **resistant to overfitting** high-dimensional data because it integrates resampling strategies [@Kuhn2022; @walsh2018]
+ 
+ - ML models focus on finding the **predictive pattern** in the data and how accurate this pattern is when classifying new cases [@bzdok2018; @walsh2018]
+ 
+- ML has the advantage of taking into account **all the available** information [@Rajula] 
+:::
+:::
+
+
+## Methods
+::: panel-tabset
+
+### The Data
+
+- Youth Risk Behavior Surveillance System (YRBSS) 
+
+- Combined YRBS High School Dataset
+
+- Surveys that monitors health behaviors and experiences among high school students in grades 9–12 attending U.S. public and private schools since 1991 [@Underwood2020]
+
+::: fragment
+The main categories included in the surveys:
+
+1) Behaviors that contribute to unintentional injury and violence
+2) Tobacco use
+3) Alcohol and other drug use
+4) Sexual behaviors that contribute to unintended pregnancy and STD/HIV infection
+5) Dietary behaviors
+6) Physical inactivity
+:::
+::: fragment
+- `tidyYRBS` 
+:::
+### Participants 
+
+```{r eval=FALSE}
+# Libraries
+library(srvyr)
+library(scales)
+
+# Loading the complete dataset
+data("hs_district")
+
+# The number of participants unweighted
+n_yrbs <- 
+  nrow(hs_district) %>% 
+  comma()
+
+saveRDS(n_yrbs, "data/n_yrbs.rds")
+
+
+# This function transforms the Data Frame into a survey object
+yrbs_df <-
+  hs_district %>%
+  srvyr::as_survey_design(
+    ids     = PSU,
+    weights = weight,
+    strata  = stratum,
+    nest    = TRUE
+  )
+
+# N weighted
+total_weight <- 
+  yrbs_df %>% 
+  summarise(N = survey_total()) %>% 
+  select(N) %>% 
+  pull() %>% 
+  comma()
+
+saveRDS(total_weight, "data/total_weight.rds")
+
+# Sex weighted
+
+female <- 
+  yrbs_df %>% 
+  group_by(sex) %>%
+  summarise(N = survey_total()) %>% 
+  mutate(sex = as.character(haven::as_factor(sex))) %>% 
+  filter(sex == "Female") %>% 
+  select(N) %>% 
+  pull() %>% 
+  comma()
+
+saveRDS(female, "data/female.rds")
+
+male <- 
+  yrbs_df %>% 
+  group_by(sex) %>%
+  summarise(N = survey_total()) %>% 
+  mutate(sex = as.character(haven::as_factor(sex))) %>% 
+  filter(sex == "Male") %>% 
+  select(N) %>% 
+  pull() %>% 
+  comma()
+
+saveRDS(male, "data/male.rds")
+
+# Suicide attempts
+data("hs_suicide")
+
+suicide_df <- 
+  hs_district %>% 
+  dplyr::select(weight, stratum, PSU, record) %>% 
+  mutate(record = as.character(record)) %>% 
+  left_join(hs_suicide) %>% 
+  mutate(
+    suicide_attempts = case_when(
+                    suicide_attempts == 0 ~ FALSE, 
+                    suicide_attempts %in% 1:6 ~ TRUE, 
+                    TRUE ~ NA)
+  )
+
+
+suicide_data <-
+  suicide_df %>%
+  srvyr::as_survey_design(
+    ids     = PSU,
+    weights = weight,
+    strata  = stratum,
+    nest    = TRUE
+  )
+
+suicide_attempts_df <- 
+  suicide_data %>% 
+  group_by(suicide_attempts) %>%
+  summarise(proportion = survey_mean(),
+            total = survey_total()) %>% 
+  dplyr::filter(suicide_attempts == TRUE) %>% 
+  pull(proportion) %>% 
+  scales::percent()
+
+saveRDS(suicide_attempts_df, "data/suicide_attempts.rds")
+
+# Suicide ideation
+
+suicide_considered_df <- 
+  suicide_data %>% 
+  group_by(suicide_considered) %>%
+  summarise(proportion = survey_mean(),
+            total = survey_total()) %>% 
+  dplyr::filter(suicide_considered == TRUE) %>% 
+  pull(proportion) %>% 
+  scales::percent()
+
+saveRDS(suicide_considered_df, "data/suicide_considered.RDS")
+```
+
+```{r include=FALSE}
+n <- readRDS("data/n_yrbs.rds")
+n_weighted <- readRDS("data/total_weight.rds")
+female <- readRDS("data/female.rds")
+male <- readRDS("data/male.rds")
+suicide_attempt <- readRDS("data/suicide_attempts.rds")
+suicide_considered <- readRDS("data/suicide_considered.rds")
+```
+
+
+- The total weighted sample for the Combined YRBS High School Dataset is `r n_weighted` cases.
+
+- From these, `r female` are female, and `r male` are male. 
+
+- The proportion of students that reported attempting suicide in this data is `r suicide_attempt`
+
+- The proportion of students that considered suicide is `r suicide_considered`. 
+
+
+### Measures
+::: fragment
+**Outcomes:**
+
+(Q26) During the past 12 months, did you ever seriously consider attempting suicide?    
+(Q28) During the past 12 months, how many times did you actually attempt suicide?   
+:::
+::: fragment
+**Predictors:**
+
+Demographic variables (age, sex, grade, race, sexual identity, site, year)
+Questionnaire items (q8-q99)
+:::
+### Data analysis 
+
+::: incremental
+1. Logistic Regression, Lasso, K-Nearest Neighbors, Random Forest, Classification and Regression Trees, and Extreme Gradient will be used to generate the predictive models 
+2. To create the models, the `tidymodels` [@tidymodels]
+3. The complete dataset will be divided into two datasets: 75% for training 25% for testing [@Kuhn2022].
+4. The testing dataset will be set to make 10-fold cross-validation to tune by the relevant hyperparameters for each technique
+5. The best model will be selected according to the highest value of ROC-AUC, overall accuracy, and Kappa value [@Kuhn2022].
+:::
+:::
+
+## Machine Learning Methods
+
+::: panel-tabset
+### Logistic Regression
+
+:::: columns
+::: {.column width="50%"}
+-   Model the outcome as a linear function of the predictors [@burkov2019].
+-   The sigmoid function is applied to adjust the predictions to stay between 0 and 1 [@burkov2019]
+-   The predictors will be selected from past literature modeling YRBSS data [@Bae2003]
+:::
+
+::: {.column width="50%"}
+![](images/logistic.webp)
+:::
+::::
+
+Logistic regression gif . *Source:* Laken, Paul van der. 2020. “Animated Machine Learning Classifiers.” Paulvanderlaken.com. https://paulvanderlaken.com/2020/01/20/animated-machine-learning-classifiers/.
 
 ### Lasso regression
-- Estimates the coefficients aiming at zero, this means that it uses shrinkage [@James2013].  
 
-- It is extremely useful for variable importance, selection, and regularization [@James2013]. 
+-   Estimates the coefficients aiming at zero, this means that it uses shrinkage [@James2013].
 
-- This technique will select only relevant coefficients [@James2013]. 
+-   It is extremely useful for variable importance, selection, and regularization [@James2013].
 
+-   This technique will select only relevant coefficients [@James2013].
 
 ### K-Nearest Neighbors (KNN)
--  KNN will assign class membership to a data point with the majority vote of its K-nearest neighbors. 
+
+-   KNN will assign class membership to a data point with the majority vote of its K-nearest neighbors.
 
 ![](images/knn.png)
 
-- The three closest points to the test observation are identified, and it is predicted that the observation belongs to the most common class, in this case, blue circles [@James2013]
+-   The three closest points to the test observation are identified, and it is predicted that the observation belongs to the most common class, in this case, blue circles [@James2013]
 
-### Classification Trees 
-- Divides the feature space into non-overlapping rectangular regions with similar response rates that can later be used for prediction [@Greenwell2022].
+### Classification Trees
 
-### Random Forest 
-- Random forest consists of hundreds or thousands of independently grown decision trees generated from different bootstrap samples from the training data [@Greenwell2022].
+-   Divides the feature space into non-overlapping rectangular regions with similar response rates that can later be used for prediction [@Greenwell2022].
+
+### Random Forest
+
+-   Random forest consists of hundreds or thousands of independently grown decision trees generated from different bootstrap samples from the training data [@Greenwell2022].
 
 ### Extreme Gradient Boosting (XGBoost)
-- Same concept of Random Forest but..
 
-- Each additional tree added to the model partially fixes the errors made by the previous trees until the maximum number of trees are combined [@burkov2019]
+-   Same concept of Random Forest but..
+
+-   Each additional tree added to the model partially fixes the errors made by the previous trees until the maximum number of trees are combined [@burkov2019]
 :::
-## Ethical Implications 
- Minimal human subjects concerns
- 
- 1. The original data was not collected to answer the present research question
- 2. Acknowledge the ownership of the original data. 
- 3. Accidentally losing or destroying the data.
- 
-## References
 
+## Ethical Implications
+
+Minimal human subjects concerns
+
+1.  The original data was not collected to answer the present research question
+2.  Acknowledge the ownership of the original data.
+3.  Accidentally losing or destroying the data.
+
+## Explanation charts 
+
+::: panel-tabset
+
+### The design flow-chart
+![](images/flowchart.drawio.svg)
+
+### Cross-validation 
+
+![](images/cross.png)
+
+### Evluation coefficientes
+
+**Accuracy:** is the fraction of predictions our model got right. 
+
+**ROC:** A receiver operating characteristic curve, is a graphical plot that illustrates the diagnostic ability of a binary classifier. It is created by plotting the true positive rate (TPR) against the false positive rate (FPR) at various threshold settings.
+
+**Kappa:** how closely the instances classified by the machine learning classifier matched the data labeled as ground truth
+
+### Confussion matix
+
+![](images/confussion_matrix.jpeg)
+
+::: 
+
+
+## References
