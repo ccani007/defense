@@ -21,7 +21,7 @@ editor_options:
 ## Agenda
 
 ::: incremental
--   Dfinitions
+-   Definitions
 -   Background Suicide Morbidity
 -   Significance of the study
 -   Research aims
@@ -37,17 +37,30 @@ editor_options:
 ::: panel-tabset
 ### Adolescents
 
--   10-19 years of age
--   Is the phase of life between childhood and adulthood [@cdc]
--   Adolescents experience rapid physical, cognitive and psychosocial growth [@cdc]
+-   WHO defines Adolescents as individuals in the 10-19 years age [@who]
+-   Is the phase of life between childhood and adulthood [@who]
+-   Adolescents experience rapid physical, cognitive and psychosocial growth [@who]
 
 ### Suicide Ideation
+
+::: columns
+::: {.column width="50%"}
 
 -   Any self-reported thoughts of engaging in suicide-related behaviors [@ocarroll1996]
     -   Considering
     -   Planning suicide
+    
+:::
+
+::: {.column width="50%"}
+
+![](images/suicide.png)
+:::
+:::
 
 ### Suicide Attempts
+::: columns
+::: {.column width="50%"}
 
 -   Any act that is self-inflicted and potentially injurious, for which there is evidence of **intent to die** [@silverman2007]
 
@@ -58,12 +71,20 @@ editor_options:
 -   Suicide *attempt II*: Any degree of injury [@silverman2007]
 :::
 
+::: {.column width="50%"}
+
+![](images/suicide.png)
+
+:::
+:::
+:::
+
 ## Background
 
 ::: panel-tabset
 ### Facts
 
--   Suicide is the third leading cause of death among 15-19 year-olds [@cdc_2022].
+-   Suicide is the third leading cause of death among 15-19 year-olds [@wonder].
 -   One in five (18.8%) students nationwide reported suicide ideation [@CDC2020].
 -   One in six (15.7%) students has made a suicide plan [@CDC2020]
 -   One in 11 (8.9%) has attempted suicide at least one time in their lifetime [@CDC2020]
@@ -159,13 +180,11 @@ ggplot(complete_data , aes(year, prevalence, label = origin, color = origin)) +
 -   Evaluated 66 studies from 2015 to 2019
 -   Internal risk factors:
     -   Ineffective coping
-    -   Smartphone abuse
-    -   Nutritional imbalance
+    -   Poor lifestyle
     -   Disturbed sleep
 -   External risk factors
     -   Family history of mental health
     -   Poor interactions in the family
-    -   State of political regimes
 :::
 :::
 
@@ -258,6 +277,7 @@ ggplot(complete_data , aes(year, prevalence, label = origin, color = origin)) +
 
 *Conceives human development as the constant interaction between the individual and the changing environment in which it lives and grows [@Bronfenbrenner1977].*
 
+
 ::: fragment
 ::: columns
 ::: {.column width="50%"}
@@ -283,22 +303,21 @@ ggplot(complete_data , aes(year, prevalence, label = origin, color = origin)) +
 
 **Macrosystem**
 
-- economic, social, educational, legal, and political systems
+- Economic, social, educational, legal, and political systems
 :::
 :::
 ::: 
 
 ### Applied to this research 
 
-![](images/the_model.drawio.svg)
+![](images/the_model.drawio.svg){fig-align="center" height=650}
 
 ### Rationale 
 
-- Allows to study adolescent suicide morbidity as the interaction of multiple risk factors at multiple levels of the adolescent system [@Perkins2002].
+- Allows to study adolescent suicide morbidity as the interaction of **multiple risk factors at multiple levels** of the adolescent system [@Perkins2002].
 
-- Moves beyond the tendency to evaluate only individualistic characteristics of adolescents. 
-
--  Cumulative risk: Exposure to risk factors in the different systems increases the probability of engaging in suicidal ideation or attemts [@Perkins2002]
+- Moves **beyond** the tendency to evaluate only individualistic characteristics of adolescents. 
+-  Allows the assessment of **other factors** that have proved relevant in the likelihood of suicide attempts and ideation [@Ayyash2002; @Price2017]
 :::
 
 ## Machine Learning 
@@ -309,22 +328,25 @@ ggplot(complete_data , aes(year, prevalence, label = origin, color = origin)) +
 
 Supervised machine learning learns from data to detect patterns [@Elhai2020; @teboul_2018]
 
+::: incremental
 - Will find the function that maps the predictors to the outcomes [@stewart_2020]
 - The result is an algorithm representing the closest possible match to the behavior of the data
 - Before the algorithm is tested, model tuning is performed to achieve more accurate predictions
 - The tuning is performed for the hyperparameters [@Kuhn2022].
 - The algorithm is evaluated by its performance in predicting the outcome [@Kuhn2022]
-- R eceiver operating characteristic (ROC), overall accuracy, and the Kappa value 
+- Receiver operating characteristic (ROC), overall accuracy, and the Kappa value 
+:::
 
 ### Simple example
 
-![](images/ml.png)
+![](images/ml.png){fig-align="center" height=650}
 
-How supervised learning works. *Source:*Pickell, Devin. 2021. “Supervised Vs Unsupervised Learning – What’s the Difference?” G2. https://www.g2.com/articles/supervised-vs-unsupervised-learning.
+*How supervised learning works*. *Source:* *Pickell, Devin. 2021. “Supervised Vs Unsupervised Learning – What’s the Difference?” G2. https://www.g2.com/articles/supervised-vs-unsupervised-learning.*
 
 ### Rationale 
 
 ::: Incremental
+
  -  ML methods are recommended and well suited for classification problems that involve **high dimensional data** (a large number of potential predictors) [@Iniesta; @walsh2018; @Elhai2020; @bzdok2018]
  
  - ML is **resistant to overfitting** high-dimensional data because it integrates resampling strategies [@Kuhn2022; @walsh2018]
@@ -333,6 +355,7 @@ How supervised learning works. *Source:*Pickell, Devin. 2021. “Supervised Vs U
  
 - ML has the advantage of taking into account **all the available** information [@Rajula] 
 :::
+
 :::
 
 
@@ -494,16 +517,17 @@ suicide_considered <- readRDS("data/suicide_considered.rds")
 
 
 ### Measures
-::: fragment
+
 **Outcomes:**
 
 (Q26) During the past 12 months, did you ever seriously consider attempting suicide?    
 (Q28) During the past 12 months, how many times did you actually attempt suicide?   
-:::
+
 ::: fragment
 **Predictors:**
 
 Demographic variables (age, sex, grade, race, sexual identity, site, year)
+
 Questionnaire items (q8-q99)
 :::
 ### Data analysis 
@@ -534,37 +558,85 @@ Questionnaire items (q8-q99)
 :::
 ::::
 
-Logistic regression gif . *Source:* Laken, Paul van der. 2020. “Animated Machine Learning Classifiers.” Paulvanderlaken.com. https://paulvanderlaken.com/2020/01/20/animated-machine-learning-classifiers/.
+*Logistic regression gif*  *Source:* *Laken, Paul van der. 2020. “Animated Machine Learning Classifiers.” Paulvanderlaken.com. https://paulvanderlaken.com/2020/01/20/animated-machine-learning-classifiers/.*
 
 ### Lasso regression
+
+:::: columns
+::: {.column width="50%"}
 
 -   Estimates the coefficients aiming at zero, this means that it uses shrinkage [@James2013].
 
 -   It is extremely useful for variable importance, selection, and regularization [@James2013].
 
 -   This technique will select only relevant coefficients [@James2013].
+::: 
 
+::: {.column width="50%"}
+![](images/lasso.gif)
+::: 
+::: 
 ### K-Nearest Neighbors (KNN)
 
+:::: columns
+::: {.column width="50%"}
+
 -   KNN will assign class membership to a data point with the majority vote of its K-nearest neighbors.
+:::
 
-![](images/knn.png)
+::: {.column width="50%"}
+![](images/knn.webp)
 
--   The three closest points to the test observation are identified, and it is predicted that the observation belongs to the most common class, in this case, blue circles [@James2013]
-
+:::
+*Logistic regression gif*  *Source:* *Laken, Paul van der. 2020. “Animated Machine Learning Classifiers.” Paulvanderlaken.com. https://paulvanderlaken.com/2020/01/20/animated-machine-learning-classifiers/.*
+::::
 ### Classification Trees
 
+:::: columns
+::: {.column width="50%"}
 -   Divides the feature space into non-overlapping rectangular regions with similar response rates that can later be used for prediction [@Greenwell2022].
+
+![](images/cutetree.png)
+:::
+
+::: {.column width="50%"}
+![](images/tree.webp)
+
+:::
+*Logistic regression gif*  *Source:* *Laken, Paul van der. 2020. “Animated Machine Learning Classifiers.” Paulvanderlaken.com. https://paulvanderlaken.com/2020/01/20/animated-machine-learning-classifiers/.*
+:::: 
 
 ### Random Forest
 
+:::: columns
+::: {.column width="50%"}
 -   Random forest consists of hundreds or thousands of independently grown decision trees generated from different bootstrap samples from the training data [@Greenwell2022].
+- Uses hundreds of trees in the back end and thus results in a more flexible boundary
+:::
+::: {.column width="50%"}
+![](images/randomforest.webp)
+
+:::
+
+*Logistic regression gif*  *Source:* *Laken, Paul van der. 2020. “Animated Machine Learning Classifiers.” Paulvanderlaken.com. https://paulvanderlaken.com/2020/01/20/animated-machine-learning-classifiers/.*
+::::
 
 ### Extreme Gradient Boosting (XGBoost)
+
+:::: columns
+::: {.column width="50%"}
 
 -   Same concept of Random Forest but..
 
 -   Each additional tree added to the model partially fixes the errors made by the previous trees until the maximum number of trees are combined [@burkov2019]
+:::
+
+::: {.column width="50%"}
+
+![](images/xgboost.webp) 
+:::
+::::
+*Logistic regression gif*  *Source:* *Laken, Paul van der. 2020. “Animated Machine Learning Classifiers.” Paulvanderlaken.com. https://paulvanderlaken.com/2020/01/20/animated-machine-learning-classifiers/.*
 :::
 
 ## Ethical Implications
@@ -575,12 +647,22 @@ Minimal human subjects concerns
 2.  Acknowledge the ownership of the original data.
 3.  Accidentally losing or destroying the data.
 
-## Explanation charts 
+## To wrap up 
 
+:::: columns
+::: {.column width="50%"}
+::: fragment
+![](images/flowchart.drawio.svg){fig-align="center" height=650}
+::: 
+:::
+::: {.column width="50%"}
+::: fragment
+![](images/ROC.png){fig-align="center" height=650}
+:::
+:::
+:::
+## Just in case...
 ::: panel-tabset
-
-### The design flow-chart
-![](images/flowchart.drawio.svg)
 
 ### Cross-validation 
 
@@ -598,6 +680,9 @@ Minimal human subjects concerns
 
 ![](images/confussion_matrix.jpeg)
 
+### Predictors in Logistic 
+
+<iframe data-src="studies/Bae.pdf" width="1000" height="700"></iframe>
 ::: 
 
 
