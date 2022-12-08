@@ -651,15 +651,17 @@ Minimal human subjects concerns
 
 :::: columns
 ::: {.column width="50%"}
-::: fragment
+
 ![](images/flowchart.drawio.svg){fig-align="center" height=650}
-::: 
+
 :::
 ::: {.column width="50%"}
-::: fragment
+
 ![](images/ROC.png){fig-align="center" height=650}
 :::
-:::
+
+
+![](images/vip.png)
 :::
 ## Just in case...
 ::: panel-tabset
@@ -684,6 +686,10 @@ Minimal human subjects concerns
 
 <iframe data-src="studies/Bae.pdf" width="1000" height="700"></iframe>
 ::: 
+
+## Thank you 
+
+![](images/theend.jpeg)
 
 
 ## References
