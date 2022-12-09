@@ -10,7 +10,7 @@ format:
     height: 900
     logo: "https://upload.wikimedia.org/wikipedia/commons/2/29/FIU_PHSW.png"
     footer: "Dissertation Proposal"
-    theme: serif
+    theme: "Theme/custom.scss"
     code-fold: true
     echo: true
     chalkboard: true
@@ -145,9 +145,9 @@ ggplot(complete_data , aes(year, prevalence, label = origin, color = origin)) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(1990, 2020, 2)) +
   theme(axis.text.x = element_text(angle = 90)) +
-  theme(panel.background = element_rect(fill = "#f0f1eb",
-                                colour = "#f0f1eb")) +
-  theme(plot.background = element_rect(fill = "#f0f1eb", colour = "#f0f1eb")) +
+  theme(panel.background = element_rect(fill = "#f5fafc",
+                                colour = "#f5fafc")) +
+  theme(plot.background = element_rect(fill = "#f5fafc", colour = "#f5fafc")) +
   scale_y_continuous(lim=c(.0, .35),
                      breaks = seq(0, 1, 0.05),
                      labels = scales::percent) +
