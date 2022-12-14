@@ -533,10 +533,10 @@ Questionnaire items (q8-q99)
 ### Data analysis 
 
 ::: incremental
-1. Logistic Regression, Lasso, K-Nearest Neighbors, Random Forest, Classification and Regression Trees, and Extreme Gradient will be used to generate the predictive models 
+1. Logistic Regression, Lasso, K-Nearest Neighbors, Random Forest, Classification and Regression Trees, and Extreme Gradient Boosting will be used to generate the predictive models 
 2. To create the models, the `tidymodels` [@tidymodels]
 3. The complete dataset will be divided into two datasets: 75% for training 25% for testing [@Kuhn2022].
-4. The testing dataset will be set to make 10-fold cross-validation to tune by the relevant hyperparameters for each technique
+4. The testing dataset will be set to make 10-fold cross-validation to tune by the relevant hyperparameters for each technique. (replication reduces noise [@Kuhn2022])
 5. The best model will be selected according to the highest value of ROC-AUC, overall accuracy, and Kappa value [@Kuhn2022].
 :::
 :::
@@ -565,11 +565,13 @@ Questionnaire items (q8-q99)
 :::: columns
 ::: {.column width="50%"}
 
--   Estimates the coefficients aiming at zero, this means that it uses shrinkage [@James2013].
+-  Select the subset of variables that minimizes prediction error.
 
--   It is extremely useful for variable importance, selection, and regularization [@James2013].
+-  Adds a penalty to the residual sum of squares.
 
--   This technique will select only relevant coefficients [@James2013].
+-  The beta coefficients shrink toward zero
+
+- This technique will select only relevant coefficients [@James2013].
 ::: 
 
 ::: {.column width="50%"}
@@ -581,7 +583,9 @@ Questionnaire items (q8-q99)
 :::: columns
 ::: {.column width="50%"}
 
--   KNN will assign class membership to a data point with the majority vote of its K-nearest neighbors.
+-   Tries to predict the correct class for the test data by calculating the distance between the test data and all the training points. 
+
+![](images/animal_knn.png)
 :::
 
 ::: {.column width="50%"}
@@ -594,7 +598,7 @@ Questionnaire items (q8-q99)
 
 :::: columns
 ::: {.column width="50%"}
--   Divides the feature space into non-overlapping rectangular regions with similar response rates that can later be used for prediction [@Greenwell2022].
+-   Iterative process that splits the data into partitions or branches, and then continues splitting each partition into smaller groups [@Greenwell2022].
 
 ![](images/cutetree.png)
 :::
@@ -629,6 +633,8 @@ Questionnaire items (q8-q99)
 -   Same concept of Random Forest but..
 
 -   Each additional tree added to the model partially fixes the errors made by the previous trees until the maximum number of trees are combined [@burkov2019]
+
+![](images/best_xgboost.png) 
 :::
 
 ::: {.column width="50%"}
