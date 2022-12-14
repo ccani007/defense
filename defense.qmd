@@ -238,7 +238,6 @@ ggplot(complete_data , aes(year, prevalence, label = origin, color = origin)) +
 - Machine Learning methods considers highly complex relations among variables to determine the optimal classification algorithm [@Ribeiro2012; @Bernet2020; @Linthicum2019].
 
 :::
-
 ::: fragment
 **Study suicide morbidity in adolescents:** 
 
