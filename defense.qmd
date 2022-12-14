@@ -257,13 +257,13 @@ ggplot(complete_data , aes(year, prevalence, label = origin, color = origin)) +
 - More accurate levels of performance in predictions over traditional statistical methodology (AUCs = 0.80–0.84) 
 :::
 ::: fragment
-<mark>There is a scarcity of research using adolescent population </mark>
+<mark>There are few studies using adolescent population </mark>
 :::
 ## Research aims
 
 1.  Identify the critical risk factors for adolescent suicide morbidity from a set of 99 risk behavior predictors with machine learning classification algorithms.
 
-2.  Identify the **best** machine learning methodology to classify adolescents who attempted and considered suicide according to its classification performance (ROC, overall accuracy, and the Kappa value).
+2.  Identify the **best** machine learning methodology to classify adolescents who attempted and considered suicide according to its classification performance (Receiver Operating Characteristic Curve, overall accuracy, and the Kappa value).
 
 3.  Compare the performance of an a priori-determined model to models informed by feature selection from the least absolute shrinkage and selection operator method.
 
@@ -541,6 +541,31 @@ Questionnaire items (q8-q99)
 :::
 :::
 
+## Ethical Implications
+
+Minimal human subjects concerns
+
+1.  The original data was not collected to answer the present research question
+2.  Acknowledge the ownership of the original data.
+3.  Accidentally losing or destroying the data.
+
+## To wrap up 
+
+:::: columns
+::: {.column width="50%"}
+
+![](images/flowchart.drawio.svg){fig-align="center" height=650}
+
+:::
+::: {.column width="50%"}
+
+![](images/ROC.png){fig-align="center" height=650}
+:::
+
+
+![](images/vip.png)
+:::
+
 ## Machine Learning Methods
 
 ::: panel-tabset
@@ -645,30 +670,7 @@ Questionnaire items (q8-q99)
 *Logistic regression gif*  *Source:* *Laken, Paul van der. 2020. “Animated Machine Learning Classifiers.” Paulvanderlaken.com. https://paulvanderlaken.com/2020/01/20/animated-machine-learning-classifiers/.*
 :::
 
-## Ethical Implications
 
-Minimal human subjects concerns
-
-1.  The original data was not collected to answer the present research question
-2.  Acknowledge the ownership of the original data.
-3.  Accidentally losing or destroying the data.
-
-## To wrap up 
-
-:::: columns
-::: {.column width="50%"}
-
-![](images/flowchart.drawio.svg){fig-align="center" height=650}
-
-:::
-::: {.column width="50%"}
-
-![](images/ROC.png){fig-align="center" height=650}
-:::
-
-
-![](images/vip.png)
-:::
 ## Just in case...
 ::: panel-tabset
 
