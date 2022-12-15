@@ -1,6 +1,6 @@
 ---
 title: "Comparing Supervised Machine Learning Classification Methods to Identify Risk Factors for Suicide Morbidity Among USA High School Students" 
-author: "Catalina Cañizares. MSc; Mark J. Macgowan. Ph.D.; Gabriel Odom. Ph.D., Th.D."
+author: "Catalina Cañizares. MSc"
 bibliography: references.bib
 format: 
   revealjs:
@@ -22,14 +22,14 @@ editor_options:
 
 ::: incremental
 -   Definitions
--   Background Suicide Morbidity
+-   Previous Studies on Suicide Morbidity
 -   Significance of the study
 -   Research aims
 -   Theoretical Framework
     -   Suicide Morbidity
     -   Machine Learning
 -   Methods
--   Ethical Implications
+
 :::
 
 ## Definitions
@@ -37,7 +37,7 @@ editor_options:
 ::: panel-tabset
 ### Adolescents
 
--   WHO defines Adolescents as individuals in the 10-19 years age [@who]
+-   World Health Organization defines Adolescents as individuals in the 10-19 years age [@who]
 -   Is the phase of life between childhood and adulthood [@who]
 -   Adolescents experience rapid physical, cognitive and psychosocial growth [@who]
 
@@ -64,9 +64,9 @@ editor_options:
 
 -   Any act that is self-inflicted and potentially injurious, for which there is evidence of **intent to die** [@silverman2007]
 
--   A suicide attempt may result in death, injury, or no injury.
+-   A suicide attempt may result in death, injury, or no injury
 
--   Suicide *attempt I*: No injury
+-   Suicide *attempt I*: No injury [@silverman2007]
 
 -   Suicide *attempt II*: Any degree of injury [@silverman2007]
 :::
@@ -84,8 +84,8 @@ editor_options:
 ::: panel-tabset
 ### Facts
 
--   Suicide is the third leading cause of death among 15-19 year-olds [@wonder].
--   One in five (18.8%) students nationwide reported suicide ideation [@CDC2020].
+-   Suicide is the third leading cause of death among 15-19 year-olds [@wonder]
+-   One in five (18.8%) students nationwide reported suicide ideation [@CDC2020]
 -   One in six (15.7%) students has made a suicide plan [@CDC2020]
 -   One in 11 (8.9%) has attempted suicide at least one time in their lifetime [@CDC2020]
 -   Suicide ideation and suicide attempts are the most commonly reported mental health crises among youth [@Standley2020]
@@ -313,9 +313,10 @@ ggplot(complete_data , aes(year, prevalence, label = origin, color = origin)) +
 
 ### Rationale 
 
-- Allows to study adolescent suicide morbidity as the interaction of **multiple risk factors at multiple levels** of the adolescent system [@Perkins2002].
+- Allows to study adolescent suicide morbidity as the interaction of **multiple risk factors at multiple levels** of the adolescent system [@Perkins2002]
 
-- Moves **beyond** the tendency to evaluate only individualistic characteristics of adolescents. 
+- Moves **beyond** the tendency to evaluate only individualistic characteristics of adolescents
+
 -  Allows the assessment of **other factors** that have proved relevant in the likelihood of suicide attempts and ideation [@Ayyash2002; @Price2017]
 :::
 
@@ -365,23 +366,12 @@ Supervised machine learning learns from data to detect patterns [@Elhai2020; @te
 
 - Youth Risk Behavior Surveillance System (YRBSS) 
 
-- Combined YRBS High School Dataset
-
 - Surveys that monitors health behaviors and experiences among high school students in grades 9–12 attending U.S. public and private schools since 1991 [@Underwood2020]
 
-::: fragment
-The main categories included in the surveys:
+- Combined YRBS High School Dataset (1991-2019)
 
-1) Behaviors that contribute to unintentional injury and violence
-2) Tobacco use
-3) Alcohol and other drug use
-4) Sexual behaviors that contribute to unintended pregnancy and STD/HIV infection
-5) Dietary behaviors
-6) Physical inactivity
-:::
-::: fragment
 - `tidyYRBS` 
-:::
+
 ### Participants 
 
 ```{r eval=FALSE}
@@ -506,13 +496,13 @@ suicide_considered <- readRDS("data/suicide_considered.rds")
 ```
 
 
-- The total weighted sample for the Combined YRBS High School Dataset is `r n_weighted` cases.
+- The total weighted sample for the Combined YRBS High School Dataset is `r n_weighted` cases
 
-- From these, `r female` are female, and `r male` are male. 
+- From these, `r female` are female, and `r male` are male
 
-- The proportion of students that reported attempting suicide in this data is `r suicide_attempt`
+- The proportion of students who reported attempting suicide in this data is `r suicide_attempt`
 
-- The proportion of students that considered suicide is `r suicide_considered`. 
+- The proportion of students who considered suicide is `r suicide_considered`
 
 
 ### Measures
@@ -529,39 +519,66 @@ Demographic variables (age, sex, grade, race, sexual identity, site, year)
 
 Questionnaire items (q8-q99)
 :::
+ 
+::: fragment
+**The main categories included in the survey**
+
+1) Behaviors that contribute to unintentional injury and violence
+2) Tobacco use
+3) Alcohol and other drug use
+4) Sexual behaviors that contribute to unintended pregnancy and STD/HIV infection
+5) Dietary behaviors
+6) Physical inactivity
+:::
+
 ### Data analysis 
 
 ::: incremental
 1. Logistic Regression, Lasso, K-Nearest Neighbors, Random Forest, Classification and Regression Trees, and Extreme Gradient Boosting will be used to generate the predictive models 
 2. To create the models, the `tidymodels` [@tidymodels]
 3. The complete dataset will be divided into two datasets: 75% for training 25% for testing [@Kuhn2022].
-4. The testing dataset will be set to make 10-fold cross-validation to tune by the relevant hyperparameters for each technique. (replication reduces noise [@Kuhn2022])
-5. The best model will be selected according to the highest value of ROC-AUC, overall accuracy, and Kappa value [@Kuhn2022].
+4. The testing dataset will be set to make 10-fold cross-validation to tune by the relevant hyperparameters for each technique [@Kuhn2022]
+5. The best model will be selected according to the highest value of receiver operating characteristic curve, overall accuracy, and Kappa value [@Kuhn2022]
 :::
+
+### Evaluation coefficients
+
+::: fragment
+- **Accuracy:** is the fraction of predictions our model got right
+
+![](images/accuracy.png){height=150}
 :::
 
-## Ethical Implications
+:::fragment
 
-Minimal human subjects concerns
+- **ROC:** A receiver operating characteristic curve, is a graphical plot that illustrates the diagnostic ability of a binary classifier. It is created by plotting the true positive rate (TPR) against the false positive rate (FPR) at various threshold settings.
 
-1.  The original data was not collected to answer the present research question
-2.  Acknowledge the ownership of the original data.
-3.  Accidentally losing or destroying the data.
+![](images/Roc_curve.png){height=500}
+:::
+
+::: fragment
+- **Kappa:** how closely the instances classified by the machine learning classifier matched the data labeled as the truth
+:::
+
+:::
+
 
 ## To wrap up 
 
 :::: columns
 ::: {.column width="50%"}
-
+::: fragment 
 ![](images/flowchart.drawio.svg){fig-align="center" height=650}
-
+:::
 :::
 ::: {.column width="50%"}
-
+::: fragment
 ![](images/ROC.png){fig-align="center" height=650}
 :::
+:::
+:::
 
-
+::: fragment
 ![](images/vip.png)
 :::
 
@@ -609,7 +626,7 @@ Minimal human subjects concerns
 
 -   Tries to predict the correct class for the test data by calculating the distance between the test data and all the training points. 
 
-![](images/animal_knn.png)
+![](images/animal_knn.jpg)
 :::
 
 ::: {.column width="50%"}
@@ -677,15 +694,8 @@ Minimal human subjects concerns
 
 ![](images/cross.png)
 
-### Evluation coefficientes
 
-**Accuracy:** is the fraction of predictions our model got right. 
-
-**ROC:** A receiver operating characteristic curve, is a graphical plot that illustrates the diagnostic ability of a binary classifier. It is created by plotting the true positive rate (TPR) against the false positive rate (FPR) at various threshold settings.
-
-**Kappa:** how closely the instances classified by the machine learning classifier matched the data labeled as ground truth
-
-### Confussion matix
+### Confusion matrix
 
 ![](images/confussion_matrix.jpeg)
 

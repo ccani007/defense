@@ -1,0 +1,11 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/983802/727e6ec58ebf4f04af3bd10cb41aa899
+bundleId: https://api.rpubs.com/api/v1/document/983802/727e6ec58ebf4f04af3bd10cb41aa899
+url: http://rpubs.com/ccani007/983802
+when: 1671073141.77056
+lastSyncTime: 1671073141.77058
